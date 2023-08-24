@@ -67,3 +67,76 @@ coroutine.resume(commandCoroutine)
     end,
  })
 
+UI Components
+InteractionElements
+Adding interactive elements
+Notifying the user
+Rayfield:Notify({
+   Title = "Notification Title",
+   Content = "Notification Content",
+   Duration = 6.5,
+   Image = 4483362458,
+   Actions = { -- Notification Buttons
+      Ignore = {
+         Name = "Okay!",
+         Callback = function()
+         print("The user tapped Okay!")
+      end
+   },
+},
+})
+
+
+local Button = Tab:CreateButton({
+   Name = "Amy's hammer attack",
+   Callback = function()
+   local args = {
+    [1] = "hammer attack"}
+game:GetService("ReplicatedStorage").remoteEvents.abilities:FireServer(unpack(args))
+
+-- The function that takes place when the button is pressed
+   end,
+})
+
+local args = {
+    [1] = "punch"
+}
+local Button = Tab:CreateButton({
+   Name = "Punch",
+   Callback = function()
+   local args = {
+    [1] = "hammer attack"}
+game:GetService("ReplicatedStorage").remoteEvents.abilities:FireServer(unpack(args))
+
+-- The function that takes place when the button is pressed
+   end,
+})
+
+local Button = Tab:CreateButton({
+   Name = "Punch",
+   Callback = function()
+   local args = {
+    [1] = "speed boost"
+}
+
+game:GetService("ReplicatedStorage").remoteEvents.abilities:FireServer(unpack(args))
+
+-- The function that takes place when the button is pressed
+   end,
+})
+
+
+local Button = Tab:CreateButton({
+   Name = "Select Character Tails",
+   Callback = function()
+ local args = {
+    [1] = "morphRequest",
+    [2] = "tails"
+}
+
+game:GetService("ReplicatedStorage").remoteEvents.characterRequest:FireServer(unpack(args))
+
+-- The function that takes place when the button is pressed
+   end,
+})
+
