@@ -1,0 +1,48 @@
+getgenv().SecureMode = true
+local Rayfield = loadstring(game:HttpGet('https://sirius.menu/rayfield'))()
+
+
+
+local Window = Rayfield:CreateWindow({
+    Name = "Euphoria ragdoll testing",
+    LoadingTitle = "ERT",
+    LoadingSubtitle = "by Dinosaurbro",
+    ConfigurationSaving = {
+       Enabled = true,
+       FolderName = "Dino", -- Create a custom folder for your hub/game
+       FileName = "Big Hub"
+    },
+    Discord = {
+       Enabled = false,
+       Invite = "noinvitelink", -- The Discord invite code, do not include discord.gg/. E.g. discord.gg/ABCD would be ABCD
+       RememberJoins = true -- Set this to false to make them join the discord every time they load it up
+    },
+    KeySystem = true, -- Set this to true to use our key system
+    KeySettings = {
+       Title = "Key System",
+       Subtitle = "Key System",
+       Note = "go to https://pastebin.com/4FrrqNgD for the key",
+       FileName = "Key", -- It is recommended to use something unique as other scripts using Rayfield may overwrite your key file
+       SaveKey = true, -- The user's key will be saved, but if you change the key, they will be unable to use your script
+       GrabKeyFromSite = false, -- If this is true, set Key below to the RAW site you would like Rayfield to get the key from
+       Key = {"dinosaurbrohubontop"} -- List of keys that will be accepted by the system, can be RAW file links (pastebin, github etc) or simple strings ("hello","key22")
+    }})
+
+    local Tab = Window:CreateTab("Main", 4483362458) -- Title, Image
+    local Button = Tab:CreateButton({
+        Name = "free coins", "90-150 coins each time u press it! (you must have defibs out and ready!)",
+        Callback = function()
+            for _,troll in pairs(game.Players:GetPlayers()) do
+                if troll.Name ~= game.Players.LocalPlayer.Name then
+                game:GetService("Players").LocalPlayer.Character.Defibs.defibusing.punched:InvokeServer(troll.Character.Humanoid, troll.Character.HumanoidRootPart)
+                end
+                end -- The function that takes place when the button is pressed
+        end,
+     })
+     local Button = Tab:CreateButton({
+        Name = "Instant accessory weapon", "REJOIN FOR IT TO TAKE EFFECT",
+        Callback = function()
+            game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(157.967, 104.991, -620.657)-- The function that takes place when the button is pressed
+        end,
+     })
+    
