@@ -1,0 +1,69 @@
+getgenv().SecureMode = true
+local Rayfield = loadstring(game:HttpGet('https://sirius.menu/rayfield'))()
+
+
+
+local Window = Rayfield:CreateWindow({
+    Name = "Dinosaurbro's universal script",
+    LoadingTitle = "Universal",
+    LoadingSubtitle = "by Dinosaurbro",
+    ConfigurationSaving = {
+       Enabled = true,
+       FolderName = "Dino", -- Create a custom folder for your hub/game
+       FileName = "Big Hub"
+    },
+    Discord = {
+       Enabled = false,
+       Invite = "noinvitelink", -- The Discord invite code, do not include discord.gg/. E.g. discord.gg/ABCD would be ABCD
+       RememberJoins = true -- Set this to false to make them join the discord every time they load it up
+    },
+    KeySystem = true, -- Set this to true to use our key system
+    KeySettings = {
+       Title = "Key System",
+       Subtitle = "Key System",
+       Note = "go to https://pastebin.com/4FrrqNgD for the key",
+       FileName = "Key", -- It is recommended to use something unique as other scripts using Rayfield may overwrite your key file
+       SaveKey = true, -- The user's key will be saved, but if you change the key, they will be unable to use your script
+       GrabKeyFromSite = false, -- If this is true, set Key below to the RAW site you would like Rayfield to get the key from
+       Key = {"dinosaurbrohubontop"} -- List of keys that will be accepted by the system, can be RAW file links (pastebin, github etc) or simple strings ("hello","key22")
+    }
+ })
+ Rayfield:Notify({
+   Title = "Info",
+   Content = "Hey! You're using a version of Dinosaurbrohub thats in beta! Welcome to the early testers. To delete the GUI, tap the V button on your keyboard.",
+   Duration = 6.5,
+   Image = 4483362458,
+print("Information available."),
+   Actions = { -- Notification Buttons
+      Ignore = {
+         Name = "Ok!",
+         Callback = function()
+         print("Information unavailable.")
+      end
+   },
+},
+})
+
+local Tab = Window:CreateTab("Loadstrings that aren't mine", 4483362458) -- Title, Image
+local Tab = Window:CreateTab("My Stuff", 4483362458) -- Title, Image
+local Slider = Tab:CreateSlider({
+    Name = "Walkspeed",
+    Range = {28, 600},
+    Increment = 0.5,
+    Suffix = "Walkspeed",
+    CurrentValue = 28,
+    Flag = "Slider1", -- A flag is the identifier for the configuration file, make sure every element has a different flag if you're using configuration saving to ensure no overlaps
+    Callback = function(v)
+        local function RunCommandContinuously()
+    while true do
+        game.Players.LocalPlayer.Character.Humanoid.WalkSpeed = v -- Your command or action here
+        print("Running the specific command...")
+        wait(1) -- Wait for a certain amount of time before repeating
+    end
+end
+
+local commandCoroutine = coroutine.create(RunCommandContinuously)
+coroutine.resume(commandCoroutine)
+    end,
+ })
+
