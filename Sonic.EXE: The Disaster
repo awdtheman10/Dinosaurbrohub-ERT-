@@ -138,14 +138,28 @@ local Slider = MyTab:CreateSlider({
    end,
 })
 
-local Toggle = MyTab:CreateToggle({
+local Slider = MyTab:CreateSlider({
    Name = "Gravity",
-   CurrentValue = false,
-   Flag = "Toggle2", -- A flag is the identifier for the configuration file, make sure every element has a different flag if you're using configuration saving to ensure no overlaps
+   Range = {0, 196.3},
+   Increment = 1,
+   Suffix = "Gravity",
+   CurrentValue = 196.3,
+   Flag = "Slider1", -- A flag is the identifier for the configuration file, make sure every element has a different flag if you're using configuration saving to ensure no overlaps
    Callback = function(Value)
-   -- The function that takes place when the toggle is pressed
-   game.Workspace.Gravity = Value-- The variable (Value) is a boolean on whether the toggle is true or false
+   -- The function that takes place when the slider changes
+   game.Workspace.Gravity = Value-- The variable (Value) is a number which correlates to the value the slider is currently at
    end,
 })
+local Button = Tab:CreateButton({
+   Name = "Infinite yield",
+   Callback = function()
+   	loadstring(game:HttpGet('https://raw.githubusercontent.com/EdgeIY/infiniteyield/master/source'))()
+   end,
+})
+
+
+
+
+
 
 
