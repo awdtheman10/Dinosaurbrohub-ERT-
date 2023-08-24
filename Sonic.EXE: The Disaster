@@ -46,26 +46,26 @@ print("Information available."),
 
 local Tab = Window:CreateTab("Loadstrings that aren't mine", 4483362458) -- Title, Image
 local Tab = Window:CreateTab("My Stuff", 4483362458) -- Title, Image
-local Slider = Tab:CreateSlider({
-    Name = "Walkspeed",
-    Range = {28, 600},
-    Increment = 0.5,
-    Suffix = "Walkspeed",
-    CurrentValue = 28,
-    Flag = "Slider1", -- A flag is the identifier for the configuration file, make sure every element has a different flag if you're using configuration saving to ensure no overlaps
-    Callback = function(v)
-        local function RunCommandContinuously()
+local Button = Tab:CreateButton({
+   Name = "Button Example",
+   Callback = function()
+   local function RunCommandContinuously()
     while true do
-        game.Players.LocalPlayer.Character.Humanoid.WalkSpeed = v -- Your command or action here
+        game.Players.LocalPlayer.Character.Humanoid.WalkSpeed = 1900000-- Your command or action here
         print("Running the specific command...")
-        wait(1) -- Wait for a certain amount of time before repeating
+        wait(0.000000000000000000000000000000000000001) -- Wait for a certain amount of time before repeating
     end
 end
 
 local commandCoroutine = coroutine.create(RunCommandContinuously)
 coroutine.resume(commandCoroutine)
-    end,
- })
+-- The function that takes place when the button is pressed
+   end,
+})
+
+local commandCoroutine = coroutine.create(RunCommandContinuously)
+coroutine.resume(commandCoroutine)
+    
 
 Rayfield:Notify({
    Title = "Notification Title",
@@ -94,14 +94,12 @@ game:GetService("ReplicatedStorage").remoteEvents.abilities:FireServer(unpack(ar
    end,
 })
 
-local args = {
-    [1] = "punch"
-}
+
 local Button = Tab:CreateButton({
    Name = "Punch",
    Callback = function()
    local args = {
-    [1] = "hammer attack"}
+    [1] = "punch"}
 game:GetService("ReplicatedStorage").remoteEvents.abilities:FireServer(unpack(args))
 
 -- The function that takes place when the button is pressed
@@ -109,7 +107,7 @@ game:GetService("ReplicatedStorage").remoteEvents.abilities:FireServer(unpack(ar
 })
 
 local Button = Tab:CreateButton({
-   Name = "Punch",
+   Name = "Speed Boost",
    Callback = function()
    local args = {
     [1] = "speed boost"
