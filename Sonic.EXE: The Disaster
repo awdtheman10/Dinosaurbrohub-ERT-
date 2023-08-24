@@ -67,10 +67,6 @@ coroutine.resume(commandCoroutine)
     end,
  })
 
-UI Components
-InteractionElements
-Adding interactive elements
-Notifying the user
 Rayfield:Notify({
    Title = "Notification Title",
    Content = "Notification Content",
