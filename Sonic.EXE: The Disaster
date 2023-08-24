@@ -45,9 +45,12 @@ print("Information available."),
 })
 
 local Tab = Window:CreateTab("Loadstrings that aren't mine", 4483362458) -- Title, Image
-local Tab = Window:CreateTab("My Stuff", 4483362458) -- Title, Image
-local Button = Tab:CreateButton({
-   Name = "Button Example",
+local MyTab = Window:CreateTab("My Stuff", 4483362458) -- Title, Image
+local Paragraph = Tab:CreateParagraph({Title = "BETA DINO HUB", Content = "Welcome to the Beta Version of Dinosaurbrohub! My discord is dinosaurbro#2505 if you need to contact me. If theres a problem, join lightning hub and type it in problems. If its serious, DM me. For now, since theres not an invite link that I have, just DM me if theres any problems with the code. Alright, have fun.", game.Players.LocalPlayer.Name, "!"})
+local Paragraph = MyTab:CreateParagraph({Title = "BETA DINO HUB", Content = "Welcome to the Beta Version of Dinosaurbrohub! My discord is dinosaurbro#2505 if you need to contact me. If theres a problem, join lightning hub and type it in problems. If its serious, DM me. For now, since theres not an invite link that I have, just DM me if theres any problems with the code. Alright, have fun.", game.Players.LocalPlayer.Name, "!"})
+
+local Button = MyTab:CreateButton({
+   Name = "No Slow",
    Callback = function()
    local function RunCommandContinuously()
     while true do
@@ -56,81 +59,83 @@ local Button = Tab:CreateButton({
         wait(0.000000000000000000000000000000000000001) -- Wait for a certain amount of time before repeating
     end
 end
+end})
 
-local commandCoroutine = coroutine.create(RunCommandContinuously)
-coroutine.resume(commandCoroutine)
--- The function that takes place when the button is pressed
-   end,
-})
-
-local commandCoroutine = coroutine.create(RunCommandContinuously)
-coroutine.resume(commandCoroutine)
-    
-
-Rayfield:Notify({
-   Title = "Notification Title",
-   Content = "Notification Content",
-   Duration = 6.5,
-   Image = 4483362458,
-   Actions = { -- Notification Buttons
-      Ignore = {
-         Name = "Okay!",
-         Callback = function()
-         print("The user tapped Okay!")
-      end
-   },
-},
-})
-
-
-local Button = Tab:CreateButton({
-   Name = "Amy's hammer attack",
-   Callback = function()
-   local args = {
-    [1] = "hammer attack"}
-game:GetService("ReplicatedStorage").remoteEvents.abilities:FireServer(unpack(args))
-
--- The function that takes place when the button is pressed
-   end,
-})
-
-
-local Button = Tab:CreateButton({
-   Name = "Punch",
-   Callback = function()
-   local args = {
-    [1] = "punch"}
-game:GetService("ReplicatedStorage").remoteEvents.abilities:FireServer(unpack(args))
-
--- The function that takes place when the button is pressed
-   end,
-})
-
-local Button = Tab:CreateButton({
-   Name = "Speed Boost",
-   Callback = function()
-   local args = {
-    [1] = "speed boost"
-}
-
-game:GetService("ReplicatedStorage").remoteEvents.abilities:FireServer(unpack(args))
-
--- The function that takes place when the button is pressed
-   end,
-})
-
-
-local Button = Tab:CreateButton({
+local Button = MyTab:CreateButton({
    Name = "Select Character Tails",
    Callback = function()
- local args = {
+   	local args = {
     [1] = "morphRequest",
     [2] = "tails"
 }
 
-game:GetService("ReplicatedStorage").remoteEvents.characterRequest:FireServer(unpack(args))
-
--- The function that takes place when the button is pressed
+game:GetService("ReplicatedStorage").remoteEvents.characterRequest:FireServer(unpack(args))-- The function that takes place when the button is pressed
    end,
 })
+
+
+local Button = MyTab:CreateButton({
+   Name = "SpeedBoost",
+   Callback = function()
+      local args = {
+         [1] = "speed boost"
+      }
+      
+      game:GetService("ReplicatedStorage").remoteEvents.abilities:FireServer(unpack(args))
+   end
+})
+
+
+local Button = MyTab:CreateButton({
+   Name = "Select Character Shadow",
+   Callback = function()
+   	local args = {
+    [1] = "morphRequest",
+    [2] = "shadow"
+}
+
+game:GetService("ReplicatedStorage").remoteEvents.characterRequest:FireServer(unpack(args))-- The function that takes place when the button is pressed
+   end,
+})
+
+
+local Button = MyTab:CreateButton({
+   Name = "Select Character Eggman",
+   Callback = function()
+   	local args = {
+    [1] = "morphRequest",
+    [2] = "eggman"
+}
+
+game:GetService("ReplicatedStorage").remoteEvents.characterRequest:FireServer(unpack(args))-- The function that takes place when the button is pressed
+   end,
+})
+
+
+local Button = MyTab:CreateButton({
+   Name = "Select Character Sonic (MUST BE UR TURN TO BE SONIC)",
+   Callback = function()
+   	local args = {
+    [1] = "morphRequest",
+    [2] = "sonicexe"
+}
+
+game:GetService("ReplicatedStorage").remoteEvents.characterRequest:FireServer(unpack(args))-- The function that takes place when the button is pressed
+   end,
+})
+
+
+local Slider = MyTab:CreateSlider({
+   Name = "Walkspeed",
+   Range = {28, 500},
+   Increment = 0.5,
+   Suffix = "Walkspeed",
+   CurrentValue = 10,
+   Flag = "Slider1", -- A flag is the identifier for the configuration file, make sure every element has a different flag if you're using configuration saving to ensure no overlaps
+   Callback = function(Value)
+   -- The function that takes place when the slider changes
+   game.Players.LocalPlayer.Character.Humanoid.WalkSpeed = Value-- The variable (Value) is a number which correlates to the value the slider is currently at
+   end,
+})
+
 
