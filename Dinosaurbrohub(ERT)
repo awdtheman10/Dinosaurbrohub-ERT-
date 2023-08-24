@@ -45,4 +45,48 @@ local Window = Rayfield:CreateWindow({
             game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(157.967, 104.991, -620.657)-- The function that takes place when the button is pressed
         end,
      })
-    
+
+
+     -- Assuming "toggleButton" is the UI element representing the toggle
+local toggleState = false
+
+
+
+
+
+
+ local Button = Tab:CreateButton({
+   Name = "Destroy Humanoid",
+   Callback = function()
+       game.Players.LocalPlayer.Character.Humanoid:Destroy()
+   end
+})
+
+local Button = Tab:CreateButton({
+   Name = "Reset Humanoid (give a new humanoid)",
+   Callback = function()
+      game.Players.LocalPlayer.Character.Humanoid:Destroy()
+      local player = game.Players.LocalPlayer -- Replace with the actual player reference
+
+      -- Get the player's character
+      local character = player.Character
+      
+      -- Check if the character exists
+      if character then
+          -- Create a new Humanoid
+          local newHumanoid = Instance.new("Humanoid")
+      
+          -- Attach the new Humanoid to the character
+          newHumanoid.Parent = character
+      
+          -- You can also set properties of the new Humanoid if needed
+          newHumanoid.MaxHealth = 10000
+          newHumanoid.Health = 10000
+          -- Set other properties as needed
+      
+          print("New Humanoid added to the character.")
+      else
+          print("Player character doesn't exist.")
+      end
+         end
+      })
