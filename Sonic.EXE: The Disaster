@@ -54,7 +54,7 @@ local Button = MyTab:CreateButton({
    Callback = function()
    local function RunCommandContinuously()
     while true do
-        game.Players.LocalPlayer.Character.Humanoid.WalkSpeed = 1900000-- Your command or action here
+        game.Players.LocalPlayer.Character.Humanoid.WalkSpeed = 190000000 -- Your command or action here
         print("Running the specific command...")
         wait(0.000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000) -- Wait for a certain amount of time before repeating
     end
@@ -192,8 +192,3 @@ RunService.RenderStepped:Connect(function()
         teleportToPoint(hit.p)
     end
 end)
-
-
-
-
-
