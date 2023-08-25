@@ -46,8 +46,8 @@ print("Information available."),
 
 local Tab = Window:CreateTab("Loadstrings that aren't mine", 4483362458) -- Title, Image
 local MyTab = Window:CreateTab("My Stuff", 4483362458) -- Title, Image
-local Paragraph = Tab:CreateParagraph({Title = "BETA DINO HUB", Content = "Welcome to the Beta Version of Dinosaurbrohub! My discord is dinosaurbro#2505 if you need to contact me. If theres a problem, join lightning hub and type it in problems. If its serious, DM me. For now, since theres not an invite link that I have, just DM me if theres any problems with the code. Alright, have fun. Also, To use clickteleport, press and hold the Right Control key on ur keyboard.", })
-local Paragraph = MyTab:CreateParagraph({Title = "BETA DINO HUB", Content = "Welcome to the Beta Version of Dinosaurbrohub! My discord is dinosaurbro#2505 if you need to contact me. If theres a problem, join lightning hub and type it in problems. If its serious, DM me. For now, since theres not an invite link that I have, just DM me if theres any problems with the code. Alright, have fun. Also, To use clickteleport, press and hold the Right Control key on ur keyboard.", })
+local Paragraph = Tab:CreateParagraph({Title = "BETA DINO HUB", Content = "Welcome to the Beta Version of Dinosaurbrohub! My discord is dinosaurbro#2505 if you need to contact me. If theres a problem, join lightning hub and type it in problems. If its serious, DM me. For now, since theres not an invite link that I have, just DM me if theres any problems with the code. Alright, have fun. Also, To use clickteleport, press and hold T on ur keyboard.", })
+local Paragraph = MyTab:CreateParagraph({Title = "BETA DINO HUB", Content = "Welcome to the Beta Version of Dinosaurbrohub! My discord is dinosaurbro#2505 if you need to contact me. If theres a problem, join lightning hub and type it in problems. If its serious, DM me. For now, since theres not an invite link that I have, just DM me if theres any problems with the code. Alright, have fun. Also, To use clickteleport, press and hold T on ur keyboard.", })
 
 local Button = MyTab:CreateButton({
    Name = "No Slow",
@@ -131,7 +131,6 @@ local Slider = MyTab:CreateSlider({
    Increment = 0.5,
    Suffix = "Walkspeed",
    CurrentValue = 10,
-   Flag = "Slider1", -- A flag is the identifier for the configuration file, make sure every element has a different flag if you're using configuration saving to ensure no overlaps
    Callback = function(Value)
    -- The function that takes place when the slider changes
    game.Players.LocalPlayer.Character.Humanoid.WalkSpeed = Value-- The variable (Value) is a number which correlates to the value the slider is currently at
@@ -144,7 +143,6 @@ local Slider = MyTab:CreateSlider({
    Increment = 1,
    Suffix = "Gravity",
    CurrentValue = 196.3,
-   Flag = "Slider1", -- A flag is the identifier for the configuration file, make sure every element has a different flag if you're using configuration saving to ensure no overlaps
    Callback = function(Value)
    -- The function that takes place when the slider changes
    game.Workspace.Gravity = Value-- The variable (Value) is a number which correlates to the value the slider is currently at
@@ -162,7 +160,7 @@ local Button = Tab:CreateButton({
 local UserInputService = game:GetService("UserInputService")
 local RunService = game:GetService("RunService")
 
-local teleportKey = Enum.KeyCode.RightCtrl -- Replace with the desired key
+local teleportKey = Enum.KeyCode.T -- Replace with the desired key
 local isTeleporting = false
 
 local function teleportToPoint(point)
