@@ -90,3 +90,35 @@ local Button = Tab:CreateButton({
       end
          end
       })
+
+
+
+
+
+local Slider = Tab:CreateSlider({
+   Name = "Walkspeed",
+   Range = {16, 1500},
+   Increment = 0.1,
+   Suffix = "Walkspeed",
+   CurrentValue = 10,
+   Flag = "Slider1", -- A flag is the identifier for the configuration file, make sure every element has a different flag if you're using configuration saving to ensure no overlaps
+   Callback = function(Value)
+   -- The function that takes place when the slider changes
+   game.Players.LocalPlayer.Character.Humanoid.WalkSpeed = Value-- The variable (Value) is a number which correlates to the value the slider is currently at
+   end,
+})
+
+
+
+local Slider = Tab:CreateSlider({
+   Name = "Gravity",
+   Range = {-45, 600},
+   Increment = 0.1,
+   Suffix = "Gravity",
+   CurrentValue = 10,
+   Flag = "Slider1", -- A flag is the identifier for the configuration file, make sure every element has a different flag if you're using configuration saving to ensure no overlaps
+   Callback = function(Value)
+   -- The function that takes place when the slider changes
+   game.Workspace.Gravity = Value-- The variable (Value) is a number which correlates to the value the slider is currently at
+   end,
+})
