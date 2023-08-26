@@ -146,3 +146,69 @@ game.Players.LocalPlayer.PlayerGui.GamePassGui["Gib out"].Visible = true
 game.Players.LocalPlayer.PlayerGui.GamePassGui["Gib out"].Visible = false
         end,
      })
+
+
+
+
+
+
+
+
+
+    local Button = Tab:CreateButton({
+        Name = "teleport to sans", 
+        Callback = function()
+local player = game.Players.LocalPlayer -- Change this to the actual player you're targeting
+local desiredCFrame = CFrame.new(
+    59.5509644, 103.131104, -550.967102,
+    0.713351369, -0.479275048, -0.511297703,
+    -5.02765179e-05, 0.729549587, -0.683927953,
+    0.700806618, 0.487906635, 0.520401061
+)
+
+local character = player.Character
+local humanoidRootPart = character:WaitForChild("HumanoidRootPart") -- Get the HumanoidRootPart
+
+-- Set the CFrame of the HumanoidRootPart to the desired CFrame
+humanoidRootPart.CFrame = desiredCFrame
+
+        end,
+     })
+
+
+
+
+
+    local Button = Tab:CreateButton({
+        Name = "teleport to a spawn", 
+        Callback = function()
+local player = game.Players.LocalPlayer -- Change this to the actual player you're targeting
+local desiredCFrame = CFrame.new(
+ -261.721466, 
+ 98.0439987, 
+ -141.277496, 
+ 1,
+ 0, 
+ 0, 
+ 0, 
+ 1, 
+ 0, 
+ 0, 
+ 0, 
+ 1
+)
+
+local character = player.Character
+local humanoidRootPart = character:WaitForChild("HumanoidRootPart") -- Get the HumanoidRootPart
+
+-- Set the CFrame of the HumanoidRootPart to the desired CFrame
+humanoidRootPart.CFrame = desiredCFrame
+
+
+
+
+
+
+
+
+end})
