@@ -128,3 +128,21 @@ local Slider = Tab:CreateSlider({
 
 local YoutubeTab = Window:CreateTab("Youtuber Credits", 4483362458) -- Title, Image
 local Section = YoutubeTab:CreateSection("No Youtubers YET.")
+
+
+
+
+    local Button = Tab:CreateButton({
+        Name = "free gamepass gui (GIB GUI)", 
+        Callback = function()
+game.Players.LocalPlayer.PlayerGui.GamePassGui["Gib out"].Visible = true
+        end,
+     })
+
+
+    local Button = Tab:CreateButton({
+        Name = "hide gib gui", 
+        Callback = function()
+game.Players.LocalPlayer.PlayerGui.GamePassGui["Gib out"].Visible = false
+        end,
+     })
