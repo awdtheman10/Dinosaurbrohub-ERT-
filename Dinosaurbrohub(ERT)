@@ -185,7 +185,7 @@ humanoidRootPart.CFrame = desiredCFrame
 local player = game.Players.LocalPlayer -- Change this to the actual player you're targeting
 local desiredCFrame = CFrame.new(
  -261.721466, 
- 98.0439987, 
+ 108.0439987, 
  -141.277496, 
  1,
  0, 
