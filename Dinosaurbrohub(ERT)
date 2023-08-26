@@ -104,7 +104,25 @@ local Slider = Tab:CreateSlider({
    Flag = "Slider1", -- A flag is the identifier for the configuration file, make sure every element has a different flag if you're using configuration saving to ensure no overlaps
    Callback = function(Value)
    -- The function that takes place when the slider changes
-   game.Players.LocalPlayer.Character.Humanoid.WalkSpeed = Value-- The variable (Value) is a number which correlates to the value the slider is currently at
+   game.Players.LocalPlayer.Character.Humanoid.WalkSpeed = Value
+        -- The variable (Value) is a number which correlates to the value the slider is currently at
+   end,
+})
+
+
+
+
+local Slider = Tab:CreateSlider({
+   Name = "Health",
+   Range = {1, 15000},
+   Increment = 0.05,
+   Suffix = "Health",
+   CurrentValue = 10,
+   Flag = "Slider1", -- A flag is the identifier for the configuration file, make sure every element has a different flag if you're using configuration saving to ensure no overlaps
+   Callback = function(Value)
+   -- The function that takes place when the slider changes
+   game.Players.LocalPlayer.Character.Humanoid.Health = Value
+    game.Players.LocalPlayer.Character.Humanoid.MaxHealth = Value    -- The variable (Value) is a number which correlates to the value the slider is currently at
    end,
 })
 
@@ -212,3 +230,92 @@ humanoidRootPart.CFrame = desiredCFrame
 
 
 end})
+
+
+
+
+
+
+
+
+
+
+
+    local Button = Tab:CreateButton({
+        Name = "teleport to a spawn #2", 
+        Callback = function()
+local player = game.Players.LocalPlayer
+
+local desiredCFrame = CFrame.new(
+    -514.710449, 98.0439987, -116.308502,
+    1, 0, 0,
+    0, 1, 0,
+    0, 0, 1
+)
+
+if player.Character then
+    player.Character:SetPrimaryPartCFrame(desiredCFrame)
+end
+end})
+
+
+
+
+
+
+
+
+
+    local Button = Tab:CreateButton({
+        Name = "give the player new humanoid", 
+        Callback = function()
+        local player = game.Players.LocalPlayer
+
+local player = game.Players.LocalPlayer
+
+-- Check if the player's character exists
+if player.Character then
+    -- Create a new Humanoid instance
+    local newHumanoid = Instance.new("Humanoid")
+    newHumanoid.Parent = player.Character
+
+
+end
+end
+
+
+
+
+
+
+
+})
+
+
+
+
+
+
+
+
+    local Button = Tab:CreateButton({
+        Name = "give the player a new camera", 
+        Callback = function()
+       
+local player = game.Players.LocalPlayer
+
+-- Create a new Camera instance
+local newCamera = Instance.new("Camera")
+newCamera.Parent = game.Workspace.CurrentCamera
+
+-- Bind the Camera to the player's character's HumanoidRootPart
+if player.Character then
+    local rootPart = player.Character:WaitForChild("HumanoidRootPart")
+    newCamera.CameraSubject = rootPart
+end
+end
+})
+
+
+
+
