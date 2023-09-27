@@ -28,8 +28,8 @@ local Window = Rayfield:CreateWindow({
        Key = {"dinosaurbrohubontop"} -- List of keys that will be accepted by the system, can be RAW file links (pastebin, github etc) or simple strings ("hello","key22")
     }})
 
-    local Tab = Window:CreateTab("Main", 4483362458) -- Title, Image
-    local Button = Tab:CreateButton({
+    local MainTab = Window:CreateTab("Main", 4483362458) -- Title, Image
+    local Button = MainTab:CreateButton({
         Name = "free coins", "90-150 coins each time u press it! (you must have defibs out and ready!)",
         Callback = function()
             for _,troll in pairs(game.Players:GetPlayers()) do
@@ -39,7 +39,7 @@ local Window = Rayfield:CreateWindow({
                 end -- The function that takes place when the button is pressed
         end,
      })
-     local Button = Tab:CreateButton({
+     local Button = MainTab:CreateButton({
         Name = "Instant accessory weapon", "REJOIN FOR IT TO TAKE EFFECT",
         Callback = function()
             game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(157.967, 104.991, -620.657)-- The function that takes place when the button is pressed
@@ -55,14 +55,14 @@ local toggleState = false
 
 
 
- local Button = Tab:CreateButton({
+ local Button = MainTab:CreateButton({
    Name = "Destroy Humanoid",
    Callback = function()
        game.Players.LocalPlayer.Character.Humanoid:Destroy()
    end
 })
 
-local Button = Tab:CreateButton({
+local Button = MainTab:CreateButton({
    Name = "Reset Humanoid (give a new humanoid)",
    Callback = function()
       game.Players.LocalPlayer.Character.Humanoid:Destroy()
@@ -95,7 +95,7 @@ local Button = Tab:CreateButton({
 
 
 
-local Slider = Tab:CreateSlider({
+local Slider = MainTab:CreateSlider({
    Name = "Walkspeed",
    Range = {16, 1500},
    Increment = 0.1,
@@ -112,7 +112,7 @@ local Slider = Tab:CreateSlider({
 
 
 
-local Slider = Tab:CreateSlider({
+local Slider = MainTab:CreateSlider({
    Name = "Health",
    Range = {1, 15000},
    Increment = 0.05,
@@ -128,7 +128,7 @@ local Slider = Tab:CreateSlider({
 
 
 
-local Slider = Tab:CreateSlider({
+local Slider = MainTab:CreateSlider({
    Name = "Gravity",
    Range = {-45, 600},
    Increment = 0.1,
@@ -147,7 +147,7 @@ local Slider = Tab:CreateSlider({
 local YoutubeTab = Window:CreateTab("Youtuber Credits", 4483362458) -- Title, Image
 local Section = YoutubeTab:CreateSection("No Youtubers YET.")
 
-    local Button = Tab:CreateButton({
+    local Button = MainTab:CreateButton({
         Name = "teleport to sans", 
         Callback = function()
 local player = game.Players.LocalPlayer -- Change this to the actual player you're targeting
@@ -171,7 +171,7 @@ humanoidRootPart.CFrame = desiredCFrame
 
 
 
-    local Button = Tab:CreateButton({
+    local Button = MainTab:CreateButton({
         Name = "teleport to a spawn", 
         Callback = function()
 local player = game.Players.LocalPlayer -- Change this to the actual player you're targeting
@@ -215,7 +215,7 @@ end})
 
 
 
-    local Button = Tab:CreateButton({
+    local Button = MainTab:CreateButton({
         Name = "teleport to a spawn #2", 
         Callback = function()
 local player = game.Players.LocalPlayer
@@ -240,7 +240,7 @@ end})
 
 
 
-    local Button = Tab:CreateButton({
+    local Button = MainTab:CreateButton({
         Name = "give the player new humanoid", 
         Callback = function()
         local player = game.Players.LocalPlayer
@@ -272,7 +272,7 @@ end
 
 
 
-    local Button = Tab:CreateButton({
+    local Button = MainTab:CreateButton({
         Name = "give the player a new camera", 
         Callback = function()
        
@@ -289,7 +289,7 @@ if player.Character then
 end
 end
 })
-local Toggle = Tab:CreateToggle({
+local Toggle = MainTab:CreateToggle({
    Name = "GibGUI",
    CurrentValue = false,
    Flag = "ToggleBruh", -- A flag is the identifier for the configuration file, make sure every element has a different flag if you're using configuration saving to ensure no overlaps
@@ -306,8 +306,8 @@ local Toggle = Tab:CreateToggle({
    end
 })
 
-local Tab = Window:CreateTab("Other Scripts", 4483362458) -- Title, Image
-local Button = Tab:CreateButton({
+local ScriptsTab = Window:CreateTab("Other Scripts", 4483362458) -- Title, Image
+local Button = ScriptsTab:CreateButton({
    Name = "Lightning Hub",
    Callback = function()
       Rayfield:Notify({
@@ -330,10 +330,10 @@ loadstring(game:HttpGet(('https://pastebin.com/raw/CSC0Ky7Z'),true))()-- The fun
 })
 
 
-local Toggle = Tab:CreateToggle({
-   Name = "GibGUI",
+local Toggle = MainTab:CreateToggle({
+   Name = "Gravity Changer",
    CurrentValue = false,
-   Flag = "ToggleBruh", -- A flag is the identifier for the configuration file, make sure every element has a different flag if you're using configuration saving to ensure no overlaps
+   Flag = "Gravity", -- A flag is the identifier for the configuration file, make sure every element has a different flag if you're using configuration saving to ensure no overlaps
    Callback = function(Value)
    if true then
       game.Players.LocalPlayer.PlayerGui.GamePassGui["Gravity Change"].Visible = true
