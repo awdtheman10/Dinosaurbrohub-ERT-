@@ -36,7 +36,7 @@ local MainTab = Window:CreateTab("Slap Battles BETA", 4483362458) -- Title, Imag
 
 
         local Button = MainTab:CreateButton({
-            Name = "BYPASS ANTICHEAT",
+            Name = "click to load features",
             Callback = function()
                 
 if not game:IsLoaded() then
@@ -57,14 +57,7 @@ end
                 end) 
                 if setfpscap then 
                     setfpscap(12569)
-                end   -- The function that takes place when the button is pressed
-            end,
-         })
-
-
-
-
-local Toggle = MainTab:CreateToggle({
+                    local Toggle = MainTab:CreateToggle({
     Name = "Rhythm Aura",
     CurrentValue = false,
     Flag = "spamExplode", -- A flag is the identifier for the configuration file, make sure every element has a different flag if you're using configuration saving to ensure no overlaps
@@ -176,36 +169,6 @@ local Toggle = MainTab:CreateToggle({
                          })
     
 
-  local Toggle = MainTab:CreateToggle({
-        Name = "Slap Aura",
-        CurrentValue = false,
-        Flag = "noVoid", -- A flag is the identifier for the configuration file, make sure every element has a different flag if you're using configuration saving to ensure no overlaps
-        Callback = function(bool)
-local Gloves = loadstring(game:HttpGet("https://raw.githubusercontent.com/cheesynob39/R2O/main/Files/Gloves.lua"))()
-                                slapAura = bool
-                                if bool == true then
-                                    while slapAura do
-                                        task.wait(.005)  
-                                        pcall(function()    
-                                            for Index, Player in next, game.Players:GetPlayers() do
-                                                if Player ~= game.Players.LocalPlayer and Player.Character and Player.Character:FindFirstChild("entered") then
-                                                    if Player.Character:FindFirstChild("Head") then
-                                                        if Player.Character.Head:FindFirstChild("UnoReverseCard") == nil and Player.Character:FindFirstChild("rock") == nil then
-                                                            if game.Players.LocalPlayer.Character:FindFirstChild("HumanoidRootPart") then
-                                                                local Magnitude = (game.Players.LocalPlayer.Character.HumanoidRootPart.Position - Player.Character.HumanoidRootPart.Position).Magnitude
-                                                                task.wait()
-                                                                if 25 >= Magnitude then
-                                                                    shared.gloveHits[getGlove()]:FireServer(Player.Character:WaitForChild("Head"))
-                                                                end
-                                                            end
-                                                        end
-                                                    end
-                                                end
-                                            end
-                                        end)
-                                    end 
-                                end
-                        end})
                                 
                             -- The function that takes place when the button is pressed
 
@@ -230,3 +193,10 @@ local Gloves = loadstring(game:HttpGet("https://raw.githubusercontent.com/cheesy
 
 
                            
+                end   -- The function that takes place when the button is pressed
+            end,
+         })
+
+
+
+
