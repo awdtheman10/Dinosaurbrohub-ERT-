@@ -176,7 +176,7 @@ local Toggle = MainTab:CreateToggle({
         
         
                             local Button = MainTab:CreateButton({
-                                Name = "steal slapples",
+                                Name = "free slaps (slapples)",
                                 Callback = function()
                                     wait(.001)
                                     for Index, Instance in next, workspace.Arena.island5.Slapples:GetDescendants() do
