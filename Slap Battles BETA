@@ -1,15 +1,15 @@
-
+getgenv().slapAura = false
 
 local Rayfield = loadstring(game:HttpGet('https://sirius.menu/rayfield'))()
  
 local Window = Rayfield:CreateWindow({
-  Name = "Slap Battles (BETA)",
-  LoadingTitle = "Beta",
-  LoadingSubtitle = "This is beta",
+  Name = "Slap Battles Beta",
+  LoadingTitle = "Loading Features....",
+  LoadingSubtitle = "Hang on!",
   ConfigurationSaving = {
-     Enabled = true,
+     Enabled = false,
      FolderName = nil, -- Create a custom folder for your hub/game
-     FileName = "Big Hub"
+     FileName = nil
   },
   Discord = {
      Enabled = false,
@@ -28,14 +28,43 @@ local Window = Rayfield:CreateWindow({
   }
 })
 
-local Tab = Window:CreateTab("BETA FEATURES", 4483362458) -- Title, Image
+local MainTab = Window:CreateTab("Slap Battles BETA", 4483362458) -- Title, Image
 
 
 
 
 
 
-local Toggle = Tab:CreateToggle({
+        local Button = MainTab:CreateButton({
+            Name = "BYPASS ANTICHEAT",
+            Callback = function()
+                
+if not game:IsLoaded() then
+        
+    game.Loaded:Wait()
+        
+end
+                local bypass;
+                bypass = hookmetamethod(game, "__namecall", function(method, ...) 
+                    if getnamecallmethod() == "FireServer" and method == game.ReplicatedStorage.Ban then
+                        return
+                    elseif getnamecallmethod() == "FireServer" and method == game.ReplicatedStorage.AdminGUI then
+                        return
+                    elseif getnamecallmethod() == "FireServer" and method == game.ReplicatedStorage.WalkSpeedChanged then
+                        return
+                    end
+                    return bypass(method, ...)
+                end) 
+                if setfpscap then 
+                    setfpscap(12569)
+                end   -- The function that takes place when the button is pressed
+            end,
+         })
+
+
+
+
+local Toggle = MainTab:CreateToggle({
     Name = "Rhythm Aura",
     CurrentValue = false,
     Flag = "spamExplode", -- A flag is the identifier for the configuration file, make sure every element has a different flag if you're using configuration saving to ensure no overlaps
@@ -58,7 +87,7 @@ local Toggle = Tab:CreateToggle({
 
 
 
-local Toggle = Tab:CreateToggle({
+local Toggle = MainTab:CreateToggle({
     Name = "Anti Ragdoll",
     CurrentValue = false,
     Flag = "Slap Aura", -- A flag is the identifier for the configuration file, make sure every element has a different flag if you're using configuration saving to ensure no overlaps
@@ -86,7 +115,7 @@ local Toggle = Tab:CreateToggle({
 
 
 
-    local Toggle = Tab:CreateToggle({
+    local Toggle = MainTab:CreateToggle({
         Name = "Anti Void",
         CurrentValue = false,
         Flag = "noVoid", -- A flag is the identifier for the configuration file, make sure every element has a different flag if you're using configuration saving to ensure no overlaps
@@ -114,6 +143,78 @@ local Toggle = Tab:CreateToggle({
         
     
     
+
+                    
+                    
+                    
+ 
+            
+
+
+
+                         local Button = MainTab:CreateButton({
+                            Name = "Spawn Nulls (OP)",
+                            Callback = function()
+                                game:GetService("ReplicatedStorage").NullAbility:FireServer()
+                                task.Wait()
+                            -- The function that takes place when the button is pressed
+                            end,
+                         })
+                            
+
+                         local Slider = MainTab:CreateSlider({
+                            Name = "WalkSpeed",
+                            Range = {16, 700},
+                            Increment = 0.1,
+                            Suffix = "Walkspeed",
+                            CurrentValue = 16,
+                            Flag = "Slider1", -- A flag is the identifier for the configuration file, make sure every element has a different flag if you're using configuration saving to ensure no overlaps
+                            Callback = function(v)
+                                game.Players.LocalPlayer.Character.Humanoid.WalkSpeed = v
+                                                     -- The function that takes place when the slider changes-- The variable (Value) is a number which correlates to the value the slider is currently at
+                            end,
+                         })
     
-    
-    
+
+  local Toggle = MainTab:CreateToggle({
+        Name = "Slap Aura",
+        CurrentValue = false,
+        Flag = "noVoid", -- A flag is the identifier for the configuration file, make sure every element has a different flag if you're using configuration saving to ensure no overlaps
+        Callback = function(bool)
+local Gloves = loadstring(game:HttpGet("https://raw.githubusercontent.com/cheesynob39/R2O/main/Files/Gloves.lua"))()
+                                slapAura = bool
+                                if bool == true then
+                                    while slapAura do
+                                        task.wait(.005)  
+                                        pcall(function()    
+                                            for Index, Player in next, game.Players:GetPlayers() do
+                                                if Player ~= game.Players.LocalPlayer and Player.Character and Player.Character:FindFirstChild("entered") then
+                                                    if Player.Character:FindFirstChild("Head") then
+                                                        if Player.Character.Head:FindFirstChild("UnoReverseCard") == nil and Player.Character:FindFirstChild("rock") == nil then
+                                                            if game.Players.LocalPlayer.Character:FindFirstChild("HumanoidRootPart") then
+                                                                local Magnitude = (game.Players.LocalPlayer.Character.HumanoidRootPart.Position - Player.Character.HumanoidRootPart.Position).Magnitude
+                                                                task.wait()
+                                                                if 25 >= Magnitude then
+                                                                    shared.gloveHits[getGlove()]:FireServer(Player.Character:WaitForChild("Head"))
+                                                                end
+                                                            end
+                                                        end
+                                                    end
+                                                end
+                                            end
+                                        end)
+                                    end 
+                                end
+                        end})
+                                
+                            -- The function that takes place when the button is pressed
+
+        
+        
+        
+
+
+                            
+
+
+                         
