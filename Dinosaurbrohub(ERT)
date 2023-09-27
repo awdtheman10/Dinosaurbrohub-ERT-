@@ -328,3 +328,21 @@ loadstring(game:HttpGet(('https://pastebin.com/raw/CSC0Ky7Z'),true))()-- The fun
       })-- The function that takes place when the button is pressed
    end,
 })
+
+
+local Toggle = Tab:CreateToggle({
+   Name = "GibGUI",
+   CurrentValue = false,
+   Flag = "ToggleBruh", -- A flag is the identifier for the configuration file, make sure every element has a different flag if you're using configuration saving to ensure no overlaps
+   Callback = function(Value)
+   if true then
+      game.Players.LocalPlayer.PlayerGui.GamePassGui["Gravity Change"].Visible = true
+      if Value == false then
+         game.Players.LocalPlayer.PlayerGui.GamePassGui["Gravity Change"].Visible = false
+      end
+   end
+      
+      -- The function that takes place when the toggle is pressed
+      -- The variable (Value) is a boolean on whether the toggle is true or false
+   end
+})
