@@ -1,0 +1,119 @@
+getgenv().SlapAura = false
+
+local Rayfield = loadstring(game:HttpGet('https://sirius.menu/rayfield'))()
+ 
+local Window = Rayfield:CreateWindow({
+  Name = "Slap Battles (BETA)",
+  LoadingTitle = "Beta",
+  LoadingSubtitle = "This is beta",
+  ConfigurationSaving = {
+     Enabled = true,
+     FolderName = nil, -- Create a custom folder for your hub/game
+     FileName = "Big Hub"
+  },
+  Discord = {
+     Enabled = false,
+     Invite = "noinvitelink", -- The Discord invite code, do not include discord.gg/. E.g. discord.gg/ABCD would be ABCD
+     RememberJoins = true -- Set this to false to make them join the discord every time they load it up
+  },
+  KeySystem = false, -- Set this to true to use our key system
+  KeySettings = {
+     Title = "Untitled",
+     Subtitle = "Key System",
+     Note = "No method of obtaining the key is provided",
+     FileName = "Key", -- It is recommended to use something unique as other scripts using Rayfield may overwrite your key file
+     SaveKey = true, -- The user's key will be saved, but if you change the key, they will be unable to use your script
+     GrabKeyFromSite = false, -- If this is true, set Key below to the RAW site you would like Rayfield to get the key from
+     Key = {"Hello"} -- List of keys that will be accepted by the system, can be RAW file links (pastebin, github etc) or simple strings ("hello","key22")
+  }
+})
+
+local Tab = Window:CreateTab("BETA FEATURES", 4483362458) -- Title, Image
+
+
+
+
+
+
+local Toggle = Tab:CreateToggle({
+    Name = "Rhythm Aura",
+    CurrentValue = false,
+    Flag = "spamExplode", -- A flag is the identifier for the configuration file, make sure every element has a different flag if you're using configuration saving to ensure no overlaps
+    Callback = function(bool)
+            spamExplode = bool
+                if spamExplode then
+                    while spamExplode and task.wait(.01) do
+                        game:GetService("ReplicatedStorage"):WaitForChild("rhythmevent"):FireServer("AoeExplosion", 86)
+                    end
+                end
+        end})-- The function that takes place when the toggle is pressed
+    -- The variable (Value) is a boolean on whether the toggle is true or false
+
+
+
+
+
+
+
+
+
+
+local Toggle = Tab:CreateToggle({
+    Name = "Anti Ragdoll",
+    CurrentValue = false,
+    Flag = "Slap Aura", -- A flag is the identifier for the configuration file, make sure every element has a different flag if you're using configuration saving to ensure no overlaps
+    Callback = function(bool)
+        antiRagdoll = bool
+            if bool == true then
+                game.Players.LocalPlayer.Character.Humanoid.Health = 0
+                task.wait()
+                game.Players.LocalPlayer.CharacterAdded:Connect(function(Character)
+                    task.wait()
+                    Character:WaitForChild("Ragdolled").Changed:Connect(function()
+                        if Character:WaitForChild("Ragdolled").Value == true and antiRagdoll == true then
+                            repeat task.wait()
+                                Character.Torso.Anchored = true
+                            until Character:FindFirstChild("Torso") == nil or Character:WaitForChild("Ragdolled").Value == false
+                            ----------------------------------------------------------------------------------------------------
+                            Character.Torso.Anchored = false
+                        end
+                    end)
+                end)
+            end
+    end})
+    
+
+
+
+
+    local Toggle = Tab:CreateToggle({
+        Name = "Anti Void",
+        CurrentValue = false,
+        Flag = "noVoid", -- A flag is the identifier for the configuration file, make sure every element has a different flag if you're using configuration saving to ensure no overlaps
+        Callback = function(noVoid)
+            if noVoid == true then
+                for i,v in pairs(game.Workspace:GetDescendants()) do
+                    if v.Name == "dedBarrier"  or v.Name == "ArenaBarrier" or v.Name == "DEATHBARRIER" or v.Name == "DEATHBARRIER2" then               
+                        v.CanCollide = true
+                        v.Material = "ForceField"
+                        v.Color = Color3.new(255,255,255)
+                        v.Transparency = .9
+                    end  
+                end 
+            else
+                for i,v in pairs(game.Workspace:GetDescendants()) do
+                    if v.Name == "dedBarrier"  or v.Name == "ArenaBarrier" or v.Name == "DEATHBARRIER" or v.Name == "DEATHBARRIER2" then               
+                        v.CanCollide = false
+                        v.Transparency = 1
+                    end  
+                end
+            end
+        end})
+        
+        
+        
+    
+    
+    
+    
+    
