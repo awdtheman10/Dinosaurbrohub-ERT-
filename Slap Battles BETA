@@ -3,7 +3,7 @@ getgenv().slapAura = false
 local Rayfield = loadstring(game:HttpGet('https://sirius.menu/rayfield'))()
  
 local Window = Rayfield:CreateWindow({
-  Name = "Slap Battles Beta",
+  Name = "Dinosaurbrohub",
   LoadingTitle = "Loading Features....",
   LoadingSubtitle = "Hang on!",
   ConfigurationSaving = {
