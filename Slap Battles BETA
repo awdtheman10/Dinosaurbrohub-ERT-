@@ -3,7 +3,7 @@ getgenv().slapAura = false
 local Rayfield = loadstring(game:HttpGet('https://sirius.menu/rayfield'))()
  
 local Window = Rayfield:CreateWindow({
-  Name = "Dinosaurbrohub",
+  Name = "Slap Battles Beta",
   LoadingTitle = "Loading Features....",
   LoadingSubtitle = "Hang on!",
   ConfigurationSaving = {
@@ -35,29 +35,13 @@ local MainTab = Window:CreateTab("Slap Battles BETA", 4483362458) -- Title, Imag
 
 
 
-        local Button = MainTab:CreateButton({
-            Name = "click to load features",
-            Callback = function()
-                
-if not game:IsLoaded() then
-        
-    game.Loaded:Wait()
-        
-end
-                local bypass;
-                bypass = hookmetamethod(game, "__namecall", function(method, ...) 
-                    if getnamecallmethod() == "FireServer" and method == game.ReplicatedStorage.Ban then
-                        return
-                    elseif getnamecallmethod() == "FireServer" and method == game.ReplicatedStorage.AdminGUI then
-                        return
-                    elseif getnamecallmethod() == "FireServer" and method == game.ReplicatedStorage.WalkSpeedChanged then
-                        return
-                    end
-                    return bypass(method, ...)
-                end) 
-                if setfpscap then 
-                    setfpscap(12569)
-                    local Toggle = MainTab:CreateToggle({
+   
+
+
+
+
+
+    local Toggle = MainTab:CreateToggle({
     Name = "Rhythm Aura",
     CurrentValue = false,
     Flag = "spamExplode", -- A flag is the identifier for the configuration file, make sure every element has a different flag if you're using configuration saving to ensure no overlaps
@@ -67,8 +51,9 @@ end
                     while spamExplode and task.wait(.01) do
                         game:GetService("ReplicatedStorage"):WaitForChild("rhythmevent"):FireServer("AoeExplosion", 86)
                     end
-                end
-        end})-- The function that takes place when the toggle is pressed
+                end end})
+ 
+        -- The function that takes place when the toggle is pressed
     -- The variable (Value) is a boolean on whether the toggle is true or false
 
 
@@ -100,9 +85,9 @@ local Toggle = MainTab:CreateToggle({
                             Character.Torso.Anchored = false
                         end
                     end)
-                end)
-            end
-    end})
+                end) end
+            end})
+
     
 
 
@@ -117,9 +102,9 @@ local Toggle = MainTab:CreateToggle({
                 for i,v in pairs(game.Workspace:GetDescendants()) do
                     if v.Name == "dedBarrier"  or v.Name == "ArenaBarrier" or v.Name == "DEATHBARRIER" or v.Name == "DEATHBARRIER2" then               
                         v.CanCollide = true
-                        v.Material = "ForceField"
-                        v.Color = Color3.new(255,255,255)
-                        v.Transparency = .9
+                        v.Material = "Marble"
+                        v.Color = Color3.new(1,1,1)
+                        v.Transparency = 0.1
                     end  
                 end 
             else
@@ -129,8 +114,8 @@ local Toggle = MainTab:CreateToggle({
                         v.Transparency = 1
                     end  
                 end
-            end
-        end})
+            end end
+        })
         
         
         
@@ -145,14 +130,7 @@ local Toggle = MainTab:CreateToggle({
 
 
 
-                         local Button = MainTab:CreateButton({
-                            Name = "Spawn Nulls (OP)",
-                            Callback = function()
-                                game:GetService("ReplicatedStorage").NullAbility:FireServer()
-                                task.Wait()
-                            -- The function that takes place when the button is pressed
-                            end,
-                         })
+                        
                             
 
                          local Slider = MainTab:CreateSlider({
@@ -164,9 +142,10 @@ local Toggle = MainTab:CreateToggle({
                             Flag = "Slider1", -- A flag is the identifier for the configuration file, make sure every element has a different flag if you're using configuration saving to ensure no overlaps
                             Callback = function(v)
                                 game.Players.LocalPlayer.Character.Humanoid.WalkSpeed = v
-                                                     -- The function that takes place when the slider changes-- The variable (Value) is a number which correlates to the value the slider is currently at
-                            end,
-                         })
+                                           
+                                                            end})
+                                           
+                                    
     
 
                                 
@@ -175,28 +154,93 @@ local Toggle = MainTab:CreateToggle({
         
         
         
-                            local Button = MainTab:CreateButton({
-                                Name = "free slaps (slapples)",
-                                Callback = function()
-                                    wait(.001)
-                                    for Index, Instance in next, workspace.Arena.island5.Slapples:GetDescendants() do
-                                        if Instance.ClassName == "TouchTransmitter" then
-                                            firetouchinterest(game.Players.LocalPlayer.Character.Head, Instance.Parent, 0)
-                                            firetouchinterest(game.Players.LocalPlayer.Character.Head, Instance.Parent, 1)
-                                -- The function that takes place when the button is pressed
-                                end
-                            end
+
+                        
+                        
+                        
+    local Toggle = MainTab:CreateToggle({
+        Name = "free slaps",
+        CurrentValue = false,
+        Flag = "free slaps", -- A flag is the identifier for the configuration file, make sure every element has a different flag if you're using configuration saving to ensure no overlaps
+        Callback = function(bool)
+            slappleFarm = bool
+            if bool == true then
+                while slappleFarm do
+                    wait(.001)
+                    for Index, Instance in next, workspace.Arena.island5.Slapples:GetDescendants() do
+                        if Instance.ClassName == "TouchTransmitter" then
+                            firetouchinterest(game.Players.LocalPlayer.Character.Head, Instance.Parent, 0)
+                            firetouchinterest(game.Players.LocalPlayer.Character.Head, Instance.Parent, 1)
                         end
-                             })
-
+                    end
+                end
+            end
+            
+                    end})
+                    local Button = MainTab:CreateButton({
+                        Name = "Spawn Nulls",
+                        Callback = function()
                             
+                                game:GetService("ReplicatedStorage").NullAbility:FireServer()
+                            task.wait()
+                        end})-- The function that takes place when the button is pressed
+                        
+                     
+
+                    nullSpam = bool
+	   
+   
+    
+        
+  local targetPlayer = game.Players.LocalPlayer
+local numberOfChecks = 5
+
+for i = 1, numberOfChecks do
+    if targetPlayer and targetPlayer.Parent then
+        if not game:IsLoaded() then
+        
+    game.Loaded:Wait()
+        end 
+end
+                local bypass;
+                bypass = hookmetamethod(game, "__namecall", function(method, ...) 
+                    if getnamecallmethod() == "FireServer" and method == game.ReplicatedStorage.Ban then
+                        return
+                    elseif getnamecallmethod() == "FireServer" and method == game.ReplicatedStorage.AdminGUI then
+                        return
+                    elseif getnamecallmethod() == "FireServer" and method == game.ReplicatedStorage.WalkSpeedChanged then
+                        return
+                    end
+                    return bypass(method, ...)
+                end) 
+                if setfpscap then 
+                    setfpscap(12569)-- Run your code here when the player is found
+        print("Player found! Bypass active.")
+        break
+    end
+    wait(1)
+end
 
 
-                           
-                end   -- The function that takes place when the button is pressed
-            end,
-         })
-
+local Button = MainTab:CreateButton({
+    Name = "Get Tycoon",
+    Callback = function()
+        if not game:GetService("BadgeService"):UserHasBadgeAsync(game.Players.LocalPlayer.UserId, 2129212145) then
+            if game.Players.LocalPlayer.Character:FindFirstChild("entered") == nil then    
+                repeat task.wait(.5)   
+                    firetouchinterest(game.Players.LocalPlayer.Character:FindFirstChild("Head"), workspace.Lobby.Teleport1.TouchInterest.Parent, 0)
+                    firetouchinterest(game.Players.LocalPlayer.Character:FindFirstChild("Head"), workspace.Lobby.Teleport1.TouchInterest.Parent, 1)          
+                until game.Players.LocalPlayer.Character:FindFirstChild("entered") 
+            end
+            task.wait()
+            repeat task.wait(.5)
+                game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = game.Workspace.Arena.Plate.CFrame * CFrame.new(0,-2,0)   
+            until game:GetService("BadgeService"):UserHasBadgeAsync(game.Players.LocalPlayer.UserId, 2129212145) 
+            -----------------------------------------------------------------------------------------------------------------------
+            game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = game.Workspace.Arena.Plate.CFrame * CFrame.new(0,2,0)
+        end
+        end})
+        -- The function that takes place when the button is pressed
 
 
 
