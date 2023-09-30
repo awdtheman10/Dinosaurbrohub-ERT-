@@ -30,6 +30,7 @@ local Window = Rayfield:CreateWindow({
    }
 })
 local Tab = Window:CreateTab("Auto farms", 4483362458) -- Title, Image
+local Teleports = Window:CreateTab("Teleports", 4483362458) -- Title, Image
 local Toggle = Tab:CreateToggle({
    Name = "autoClick",
    CurrentValue = false,
@@ -84,14 +85,61 @@ end)-- The function that takes place when the toggle is pressed
 
 
 
+local Button = Teleports:CreateButton({
+    Name = "Teleport to desert",
+    Callback = function()
+        local player = game.Players.LocalPlayer
+        local character = player.Character
+        local humanoidRootPart = character:WaitForChild("HumanoidRootPart") -- Assuming HumanoidRootPart is the root part of the character
+
+        -- Create a new CFrame and set it to the character's HumanoidRootPart
+        local newCFrame = CFrame.new(2288.66113, 7.36253929, 1087.66602)
+        humanoidRootPart.CFrame = newCFrame
+    end,
+})
+
+
+local Button = Teleports:CreateButton({
+    Name = "Teleport to lava",
+    Callback = function()
+        local player = game.Players.LocalPlayer
+        local character = player.Character
+        local humanoidRootPart = character:WaitForChild("HumanoidRootPart") -- Assuming HumanoidRootPart is the root part of the character
+
+        -- Create a new CFrame and set it to the character's HumanoidRootPart
+        local newCFrame = CFrame.new(-1690.38525, 7.77716637, -734.648865, 1, 0, 0, 0, 1, 0, 0, 0, 1)
+        humanoidRootPart.CFrame = newCFrame
+    end,
+})
+
+
+local Button = Teleports:CreateButton({
+    Name = "Teleport to Ocean",
+    Callback = function()
+        local player = game.Players.LocalPlayer
+        local character = player.Character
+        local humanoidRootPart = character:WaitForChild("HumanoidRootPart") -- Assuming HumanoidRootPart is the root part of the character
+
+        -- Create a new CFrame and set it to the character's HumanoidRootPart
+        local newCFrame = CFrame.new(-258.018005, 9.72535324, 2065.25439, 1, 0, 0, 0, 1, 0, 0, 0, 1)
+        humanoidRootPart.CFrame = newCFrame
+    end,
+})
+
+
+local Button = Teleports:CreateButton({
+    Name = "Teleport to Winter",
+    Callback = function()
+        local player = game.Players.LocalPlayer
+        local character = player.Character
+        local humanoidRootPart = character:WaitForChild("HumanoidRootPart") -- Assuming HumanoidRootPart is the root part of the character
+
+        -- Create a new CFrame and set it to the character's HumanoidRootPart
+        local newCFrame = CFrame.new(-2195.28003, 6.46062994, 409.998016, 1, 0, 0, 0, 1, 0, 0, 0, 1)
+        humanoidRootPart.CFrame = newCFrame
+    end,
+})
 
 
 
-
-
-
-
-
-
-
-print('hello')
+print('hello there fellow exploiter')
