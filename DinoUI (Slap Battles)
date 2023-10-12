@@ -53,9 +53,9 @@ local titleText = Instance.new("TextLabel")
 titleText.Size = UDim2.new(1, 0, 1, 0)
 titleText.BackgroundColor3 = Color3.new(1, 5, 3)  -- White background
 titleText.BorderSizePixel = 0
-titleText.Text = "Slap Battles"
+titleText.Text = "Dino UI (Slap Battles)" -- Change to whatever you want
 titleText.Parent = titleBar
-
+---------------------FUNCTIONS-----------------------------------------
 local Gloves = loadstring(game:HttpGet("https://raw.githubusercontent.com/cheesynob39/R2O/main/Files/Gloves.lua"))()
 local function getGlove()
    return game.Players.LocalPlayer.leaderstats.Glove.Value
@@ -83,43 +83,11 @@ elseif uiVisible == false then
     end
 end
 
-local closeButton = Instance.new("TextButton")
-closeButton.Size = UDim2.new(0, 20, 0, 20)
-closeButton.Position = UDim2.new(0.8124, -25, 0, 5)
-closeButton.BackgroundColor3 = Color3.new(0.2, 0.2, 0.2)  -- Dark grey background
-closeButton.BorderSizePixel = 0
-closeButton.Text = "X"
-closeButton.TextColor3 = Color3.new(1, 0, 0)  -- Red text color
-closeButton.Parent = titleBar
-closeButton.MouseButton1Click:Connect(function()
-ToggleUI()
-end)
 
 
 
--- Function to toggle flying
-local function toggleFlying()
-    isFlying = not isFlying
-    local player = game.Players.LocalPlayer
-    local character = player.Character
 
-    if isFlying then
-        -- Enable flying
-        if character and character:FindFirstChild("Humanoid") then
-            character.Humanoid:ChangeState(Enum.HumanoidStateType.Physics)
-            character.HumanoidRootPart.Anchored = true
-            character.HumanoidRootPart.CFrame = CFrame.new(0, 1000, 0)  -- Adjust the position as needed
-        end
-    else
-        -- Disable flying
-        if character and character:FindFirstChild("Humanoid") then
-            character.Humanoid:Move(Vector3.new(0, 0, 0))  -- Stop the player's movement
-            character.HumanoidRootPart.Anchored = false
-        end
-    end
-end
 
--- Create a toggle in your UI
 
 
 
@@ -406,7 +374,7 @@ end
 
 
 
-
+------------------------BUTTONS AND TOGGLES------------------------
 
 
 
@@ -437,9 +405,9 @@ local autoCornsEnabled = false  -- Initialize the auto corns toggle state
 local function toggleAutoCorns()
     autoCornsEnabled = not autoCornsEnabled
     
-    if autoCornsEnabled then
+    if autoCornsEnabled == true then
         while autoCornsEnabled do
-            wait(0.1)  -- Adjust the wait time as needed
+            wait(0.0000000000000000000000000000000000000000000000000000001)  -- Adjust the wait time as needed
             local candyCornsFolder = game.Workspace.CandyCorns
             if candyCornsFolder then
                 for _, candy in pairs(candyCornsFolder:GetDescendants()) do
@@ -547,8 +515,10 @@ end)
 
 
 
-UI.createButton("Auto Corns (REJOIN TO STOP) (HALLOWEEN SPECIAL)", function()
-	toggleAutoCorns()
+UI.createToggle("Auto Corns", false, function(toggleState)
+toggleAutoCorns()
+autoCornsEnabled = true
+	
 end)
 
 
@@ -694,6 +664,9 @@ local player = game.Players.LocalPlayer
 -- Set the player's CFrame
 local cframe = CFrame.new(-4.08816528, -8.92293644, 1.83554244, 0, 1, -0, -1, 0, 0, 0, 0, 1)
 player.Character:SetPrimaryPartCFrame(cframe)
+wait(0.8)
+game.Workspace.atg7wd4.InLobby.Value = true
+game.Workspace.atg7wd4.isInArena.Value = false
 end)
 
 
@@ -741,50 +714,22 @@ player.Character:SetPrimaryPartCFrame(cframe)
 end)
 
 
-UI.createToggle("No Slap Cooldown", false, function(toggleState)
-if toggleState == true then
+UI.createButton("No Slap Cooldown", function()
 local Cooldown; Cooldown = hookfunction(wait, function(v)
 v = -9999999
 return Cooldown(v)
 end)
-end
-if toggleState == false then
-    local Cooldown; Cooldown = hookfunction(wait, function(v)
-        v = 1
-        return Cooldown(v)
-        end)
-end
 end)
+
 
 
 UI.createButton("Rejoin The SERVER", function()
-      loadstring(game:HttpGet(('https://pastebin.com/raw/X2gaMq46'),true))()
+local ts = game:GetService("TeleportService")
+
+local p = game:GetService("Players").LocalPlayer
+
+ts:Teleport(game.PlaceId, p)
 end)
-
-
-UI.createToggle("Fly Toggle", false, function(toggleState)
-local function toggleFlying()
-    isFlying = not isFlying
-    local player = game.Players.LocalPlayer
-    local character = player.Character
-
-    if isFlying then
-        -- Enable flying
-        if character and character:FindFirstChild("Humanoid") then
-            character.Humanoid:ChangeState(Enum.HumanoidStateType.Physics)
-            character.HumanoidRootPart.Anchored = true
-            character.HumanoidRootPart.CFrame = CFrame.new(0, 1000, 0)  -- Adjust the position as needed
-        end
-    else
-        -- Disable flying
-        if character and character:FindFirstChild("Humanoid") then
-            character.Humanoid:Move(Vector3.new(0, 0, 0))  -- Stop the player's movement
-            character.HumanoidRootPart.Anchored = false
-        end
-    end
-end
-end)
-
 
 
 
