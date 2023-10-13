@@ -1,4 +1,7 @@
 local placeId = game.PlaceId
+	local sound = Instance.new("Sound")
+local SoundService = game:GetService("SoundService")
+
 	
 --[[  i'll leave comments so its easy to understand stuff
 also so that i can remember wheres stuff is
@@ -61,6 +64,25 @@ local function getGlove()
    return game.Players.LocalPlayer.leaderstats.Glove.Value
 end
 
+
+
+
+
+local function playEpicMusic()
+    -- Mute all other sounds
+    SoundService.RespectFilteringEnabled = false
+    sound.Parent = game.Players.LocalPlayer.Character.HumanoidRootPart
+    sound.Volume = 5
+    sound.Looped = true
+    sound.SoundId = "rbxassetid://1837779548"
+    sound:Play()
+end
+
+local function stopEpicMusic()
+    -- Unmute all other sounds
+    SoundService.RespectFilteringEnabled = true
+    sound:Stop()
+end
 
 
 
@@ -335,9 +357,27 @@ end
 
 
 
+-- Function to update the Song UI with the current audio
+function updateSongUI(audioID, audioTitle)
+    local songUI = game.Players.LocalPlayer:FindFirstChild("PlayerGui"):FindFirstChild("SongUI")
 
+    if songUI then
+        local titleText = songUI:FindFirstChild("Frame"):FindFirstChild("TextLabel")
+        local assetIDText = songUI:FindFirstChild("Frame"):FindFirstChild("TextLabel", true)
+        local playButton = songUI:FindFirstChild("Frame"):FindFirstChild("TextButton", true)
+        local pauseButton = songUI:FindFirstChild("Frame"):FindFirstChild("TextButton", true)
 
+        titleText.Text = "Currently Playing: " .. audioTitle
+        assetIDText.Text = "RBXAssetID: " .. audioID
+        currentAudioID = audioID
 
+        if audioPlaying then
+            playButton.Text = "Pause"
+        else
+            playButton.Text = "Play"
+        end
+    end
+end
 
 
 
@@ -471,19 +511,6 @@ end
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
     game.StarterGui:SetCore("SendNotification", {
         Title = "Open/Close UI",
         Text = "Press K to open/close the UI",
@@ -517,7 +544,7 @@ end)
 
 UI.createToggle("Auto Corns", false, function(toggleState)
 toggleAutoCorns()
-autoCornsEnabled = true
+
 	
 end)
 
@@ -764,13 +791,32 @@ end
                 end
                 return bypass(method, ...)
             end) 
-            if setfpscap then 
-                setfpscap(9999999999999999999999999999999999999999999999999999999999999999999999999999999)-- Run your code here when the player is found
+            
     print("Player found! Bypass active.")
     break
 end
 wait(1)
-end
+
+
+
+
+
+
+-- Create a button to copy the Discord link
+UI.createButton("Copy Discord Link", function(plr)
+    local copy = "https://discord.gg/mMhsHuwyBR", 
+    setclipboard(tostring(copy)) 
+    end)
+
+
+-- Create the UI buttons
+UI.createButton("Que the epic music", playEpicMusic)
+
+UI.createButton("Stop Epic Music", stopEpicMusic)
+
+
+
+
 
 
 
@@ -802,3 +848,5 @@ else
     })
 end
 end)
+
+
