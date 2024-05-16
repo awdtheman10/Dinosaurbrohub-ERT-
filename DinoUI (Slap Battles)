@@ -1,5 +1,5 @@
 local placeId = game.PlaceId
-	local sound = Instance.new("Sound")
+local sound = Instance.new("Sound", game.Workspace)
 local SoundService = game:GetService("SoundService")
 
 	
@@ -69,19 +69,24 @@ end
 
 
 local function playEpicMusic()
-    -- Mute all other sounds
-    SoundService.RespectFilteringEnabled = false
-    sound.Parent = game.Players.LocalPlayer.Character.HumanoidRootPart
-    sound.Volume = 5
-    sound.Looped = true
-    sound.SoundId = "rbxassetid://1837779548"
-    sound:Play()
+  for _, child in pairs(game.Workspace:GetChildren()) do
+	if child:IsA("Sound") then
+	child:Stop()	
+end
+end
+
+sound.SoundId = "rbxassetid://1837779548"
+sound.Looped = true
+sound.Volume = 1
 end
 
 local function stopEpicMusic()
-    -- Unmute all other sounds
-    SoundService.RespectFilteringEnabled = true
-    sound:Stop()
+  for _, child in pairs(game.Workspace:GetChildren()) do
+	if child:IsA("Sound") then
+	child:Play()	
+end
+end
+sound:Stop()
 end
 
 
