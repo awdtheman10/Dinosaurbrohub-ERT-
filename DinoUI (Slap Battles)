@@ -73,11 +73,14 @@ local function playEpicMusic()
 	if child:IsA("Sound") then
 	child:Stop()	
 end
+
 end
 
 sound.SoundId = "rbxassetid://1837779548"
 sound.Looped = true
 sound.Volume = 1
+sound.Playing = true
+
 end
 
 local function stopEpicMusic()
