@@ -447,33 +447,6 @@ end
 
 
 
-local autoCornsEnabled = false  -- Initialize the auto corns toggle state
-
-
-local function toggleAutoCorns()
-    autoCornsEnabled = not autoCornsEnabled
-    
-    if autoCornsEnabled == true then
-        while autoCornsEnabled do
-            wait(0.0000000000000000000000000000000000000000000000000000001)  -- Adjust the wait time as needed
-            local candyCornsFolder = game.Workspace.CandyCorns
-            if candyCornsFolder then
-                for _, candy in pairs(candyCornsFolder:GetDescendants()) do
-                    if candy:IsA("Model") or candy:IsA("BasePart") then
-                        local player = game.Players.LocalPlayer
-                        local character = player.Character
-                        if character then
-                            local rootPart = character:FindFirstChild("HumanoidRootPart")
-                            if rootPart then
-                                rootPart.CFrame = candy.CFrame
-                            end
-                        end
-                    end
-                end
-            end
-        end
-    end
-end
 
 
 
@@ -552,17 +525,17 @@ end
 
 
 -- Walk Speed Slider
-UI.createSlider("Walk Speed", -196, 500, 18, function(sliderValue)
+UI.createSlider("Walk Speed", 16, 35, 16, function(sliderValue)
 game.Players.LocalPlayer.Character:FindFirstChild("Humanoid").WalkSpeed = sliderValue
 end)
 
 -- Gravity Slider
-UI.createSlider("Gravity", -45, 257.3, 196.2, function(sliderValue)
+UI.createSlider("Gravity", 0, 300, 196.2, function(sliderValue)
 game.Workspace.Gravity = sliderValue
 end)
 
 -- Jump Power Slider
-UI.createSlider("Jump Power", 0, 10000, 50, function(sliderValue)
+UI.createSlider("Jump Power", 0, 450, 50, function(sliderValue)
 game.Players.LocalPlayer.Character:FindFirstChild("Humanoid").JumpPower = sliderValue
 end)
 
@@ -570,7 +543,22 @@ end)
 
 UI.createToggle("Infinite Oxygen", false, function(toggleState)
 	while toggleState == true do
-		wait(0.05)
+		wait()
 		game:GetService("Players").LocalPlayer.Oxygen.Value = 100
 	end
 end)
+
+UI.createToggle("Infinite Food", false, function(toggleState)
+	while toggleState == true do
+		wait()
+		game:GetService("Players").LocalPlayer.Hunger.Value = 100
+	end
+end)
+
+UI.createToggle("Infinite Water", false, function(toggleState)
+	while toggleState == true do
+		wait()
+		game:GetService("Players").LocalPlayer.Thirst.Value = 100
+	end
+end)
+
