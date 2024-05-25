@@ -34,7 +34,7 @@ local Window = Rayfield:CreateWindow({
 
 -- Create the main tab and button
 local Main = Window:CreateTab("Main") -- Title, Image
-local Paragraph = Main:CreateParagraph({Title = "by awdtheman11", Content = "Welcome to dinosaurbrohub. Your version of this script (varies by script) is 'a.1.26.317.' Script name: dusty trip. Welcome aboard!"})
+local Paragraph = Main:CreateParagraph({Title = "by awdtheman11", Content = "Welcome to dinosaurbrohub. Your version of this script (varies by script) is 'Dino_alpha.1.29_release_1.' Script name: dusty trip. Welcome aboard!"})
 local TweenService = game:GetService("TweenService")
 local player = game.Players.LocalPlayer
 local isTweening = false
@@ -127,9 +127,10 @@ local buttons = {
         Name = "Tween to 10000m (slow)",
         Speed = 150,
     },
-    {
-        Name = "Tween to 10000m (fast)",
-        Speed = 550,
+    
+     {
+        Name = "Tween to 10000m (ultra slow)",
+        Speed = 35,
     }
 }
 
@@ -150,44 +151,54 @@ for _, btn in ipairs(buttons) do
 end
 
 
-
 local Button = Main:CreateButton({
-    Name = "Get all items (cant pick up) ",
+    Name = "Get all items in your area",
     Callback = function()
-         
         local character = player.Character or player.CharacterAdded:Wait()
         local humanoidRootPart = character:WaitForChild("HumanoidRootPart")
         local torsoCFrame = humanoidRootPart.CFrame
-
-        -- Clone all items from ReplicatedStorage.items and set their CFrame
+        
+        -- Get all item names from the items folder
         local itemsFolder = game.ReplicatedStorage:WaitForChild("items")
+        local itemNames = {}
         for _, item in ipairs(itemsFolder:GetChildren()) do
-           local clonedItem = item:Clone()
-            clonedItem.Parent = workspace
-            clonedItem.CFrame = torsoCFrame
+            table.insert(itemNames, item.Name)
         end
         
-        print("Items cloned and moved to player's torso position")
-    end,
-})
-
-
-local Button = Main:CreateButton({
-    Name = "Third Person",
-    Callback = function()
-    while true do
-         player.CameraMaxZoomDistance = 250
-         wait()
+        -- Search game.Workspace for models with names matching those in the items folder
+        for _, itemName in ipairs(itemNames) do
+            local model = game.Workspace:FindFirstChild(itemName)
+            if model and model:IsA("Model") then
+                -- Teleport the part inside the model to the player's torso
+                local part = model:FindFirstChildWhichIsA("BasePart")
+                if part then
+                    part.CFrame = torsoCFrame
+                else
+                    warn("No BasePart found inside model:", model.Name)
+                end
+            end
         end
+        
+        print("Items teleported to player's torso position")
     end,
 })
 
 
 
-local OtherScripts = Window:CreateTab("Other Scripts", 4483362458) -- Title, Image 
+
+
+
+local OtherScripts = Window:CreateTab("Other Scripts") -- Title, Image 
+local Universal = Window:CreateTab("Universal") -- Title, Image 
 local Button = OtherScripts:CreateButton({
     Name = "Lightning hub",
     Callback = function()
     loadstring(game:HttpGet(('https://pastebin.com/raw/CSC0Ky7Z'),true))()
+    end,
+})
+local Button = Universal:CreateButton({
+    Name = "Infinite Yield",
+    Callback = function()
+    loadstring(game:HttpGet("https://raw.githubusercontent.com/EdgeIY/infiniteyield/master/source",true))()
     end,
 })
