@@ -1,0 +1,77 @@
+local Library = loadstring(game:HttpGet('https://raw.githubusercontent.com/Loco-CTO/UI-Library/main/VisionLibV2/source.lua'))()
+local Window = Library:Create({
+	Name = "Dinosaurbrohub V2", -- String
+	Footer = "By awdtheman10", -- String
+	ToggleKey = Enum.KeyCode.RightShift, -- Enum.KeyCode
+	LoadedCallback = function()
+		-- Function
+	end,
+
+	KeySystem = false, -- Boolean
+	Key = "keyabc123", -- String
+	MaxAttempts = 5, -- Integer
+	DiscordLink = nil, -- String (Set it to nil if you do not have one, the button will not pop out)
+	ToggledRelativeYOffset = 5 -- Number (Y Offset from bottom of your screen. Set it to nil if you want it to be centred)
+})
+local Tab = Window:Tab({
+	Name = "Main", -- String
+	Icon = "rbxassetid://11396131982", -- String
+	Color = Color3.new(1, 0, 0) -- Color3
+})
+local Tab2 = Window:Tab({
+	Name = "Player", -- String
+	Icon = "rbxassetid://11396131982", -- String
+	Color = Color3.new(1, 0, 0) -- Color3
+})
+
+local Section = Tab:Section({
+	Name = "Functions" -- String
+})
+
+local Button = Section:Button({
+	Name = "Safe zone", -- String
+	Callback = function()
+  local safezone =  Instance.new("Part", workspace)
+  safezone.Name = "Safezone"
+  safezone.CFrame = CFrame.new(10000, 995, 10000)
+  safezone.Size = Vector3.new(750, 2, 750)
+  safezone.Transparency = 0.15
+  safezone.Anchored = true
+   game.Players.LocalPlayer.Character.Torso.CFrame = CFrame.new(10000, 1000, 10000)-- The function that takes place when the button is pressed
+	end
+})
+local Dropdown = Section:Dropdown({
+    Name = "Players", -- String
+    Items = {'', ' '}, -- Table
+    Callback = function(item)
+        game.Players.LocalPlayer.Character.Torso.CFrame = game.Players[item].Character.Torso.CFrame
+    end
+})
+
+local Button = Section:Button({
+    Name = "Refresh Player List", -- String
+    Callback = function()
+        local players1 = {}
+        for _, player in pairs(game.Players:GetPlayers()) do 
+            table.insert(players1, player.Name)
+        end
+        -- Add additional items if needed
+        table.insert(players1, nil)
+        table.insert(players1, nil)
+        table.insert(players1, nil)
+        table.insert(players1, nil)
+        -- Update the dropdown menu
+        Dropdown:UpdateList({
+            Items = players1,
+            Replace = true
+        }) 
+    end
+})
+
+local Toggle = Section:Toggle({
+	Name = "anti void", -- String
+	Default = true, -- Boolean
+	Callback = function(Bool)
+		
+	end
+})
