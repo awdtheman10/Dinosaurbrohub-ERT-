@@ -1,0 +1,188 @@
+getgenv().SecureMode = true
+local Rayfield = loadstring(game:HttpGet('https://sirius.menu/rayfield'))()
+local Window = Rayfield:CreateWindow({
+   Name = "Doomspire Brickbattle",
+   LoadingTitle = "Dinosaurbrohub",
+   LoadingSubtitle = "by awdtheman11",
+   ConfigurationSaving = {
+      Enabled = true,
+      FolderName = nil, -- Create a custom folder for your hub/game
+      FileName = "dh"
+   },
+   Discord = {
+      Enabled = false,
+      Invite = "noinvitelink", -- The Discord invite code, do not include discord.gg/. E.g. discord.gg/ABCD would be ABCD
+      RememberJoins = true -- Set this to false to make them join the discord every time they load it up
+   },
+   KeySystem = false, -- Set this to true to use our key system
+   KeySettings = {
+      Title = "Untitled",
+      Subtitle = "Key System",
+      Note = "No method of obtaining the key is provided",
+      FileName = "Key", -- It is recommended to use something unique as other scripts using Rayfield may overwrite your key file
+      SaveKey = true, -- The user's key will be saved, but if you change the key, they will be unable to use your script
+      GrabKeyFromSite = false, -- If this is true, set Key below to the RAW site you would like Rayfield to get the key from
+      Key = {"Hello"} -- List of keys that will be accepted by the system, can be RAW file links (pastebin, github etc) or simple strings ("hello","key22")
+   }
+})
+
+
+local Tab = Window:CreateTab("Teleports", 4483362458) -- Title, Image
+local Player = Window:CreateTab("Player", 4483362458) -- Title, Image
+local player1 = game.Players.LocalPlayer
+local Label = Tab:CreateLabel("Bases")
+local Button = Tab:CreateButton({
+   Name = "Green (Best bombing area)",
+   Callback = function()
+   if player1.Team ~= game.Teams.GREEN then
+   game.Players.LocalPlayer.Character.Torso.CFrame = CFrame.new(0, 25, -125)-- The function that takes place when the button is pressed
+   else
+    Rayfield:Notify({
+   Title = "Error",
+   Content = "This is your own team!",
+   Duration = 6.5,
+   Image = 4483362458,
+   Actions = { -- Notification Buttons
+      Ignore = {
+         Name = "Okay!",
+         Callback = function()
+         print("The user tapped Okay!")
+      end
+   },
+},
+})
+   end
+   end,
+})
+local Button = Tab:CreateButton({
+   Name = "Blue (Best bombing area)",
+   Callback = function()
+   if player1.Team ~= game.Teams.BLUE then
+   game.Players.LocalPlayer.Character.Torso.CFrame = CFrame.new(2, 27, 117)-- The function that takes place when the button is pressed
+  else
+ Rayfield:Notify({
+   Title = "Error",
+   Content = "This is your own team!",
+   Duration = 6.5,
+   Image = 4483362458,
+   Actions = { -- Notification Buttons
+      Ignore = {
+         Name = "Okay!",
+         Callback = function()
+         print("The user tapped Okay!")
+      end
+   },
+},
+})
+   end
+   end,
+})
+local Button = Tab:CreateButton({
+   Name = "Yellow (Best bombing area)",
+   Callback = function()
+   if player1.Team ~= game.Teams.YELLOW then
+   game.Players.LocalPlayer.Character.Torso.CFrame = CFrame.new(127, 27, 2)-- The function that takes place when the button is pressed
+   else
+    Rayfield:Notify({
+   Title = "Error",
+   Content = "This is your own team!",
+   Duration = 6.5,
+   Image = 4483362458,
+   Actions = { -- Notification Buttons
+      Ignore = {
+         Name = "Okay!",
+         Callback = function()
+         print("The user tapped Okay!")
+      end
+   },
+},
+})
+   end
+   end,
+})
+
+local Button = Tab:CreateButton({
+   Name = "Red (Best bombing area)",
+   Callback = function()
+   if player1.Team ~= game.Teams.RED then
+   game.Players.LocalPlayer.Character.Torso.CFrame = CFrame.new(-131, 24, -8)-- The function that takes place when the button is pressed
+    else
+    Rayfield:Notify({
+   Title = "Error",
+   Content = "This is your own team!",
+   Duration = 6.5,
+   Image = 4483362458,
+   Actions = { -- Notification Buttons
+      Ignore = {
+         Name = "Okay!",
+         Callback = function()
+         print("The user tapped Okay!")
+      end
+   },
+},
+})
+    end
+   end,
+})
+
+local Label = Tab:CreateLabel("Other")
+local Button = Tab:CreateButton({
+   Name = "Safe zone",
+   Callback = function()
+    if workspace.Safezone then
+        workspace.Safezone:Destroy()
+    end
+  local safezone =  Instance.new("Part", workspace)
+  safezone.Name = "Safezone"
+  safezone.CFrame = CFrame.new(10000, 995, 10000)
+  safezone.Size = Vector3.new(750, 2, 750)
+  safezone.Transparency = 0.15
+  safezone.Anchored = true
+   game.Players.LocalPlayer.Character.Torso.CFrame = CFrame.new(10000, 1000, 10000)-- The function that takes place when the button is pressed
+   end,
+}) 
+local Button = Tab:CreateButton({
+   Name = "Dead Lobby",
+   Callback = function()
+  
+   game.Players.LocalPlayer.Character.Torso.CFrame = CFrame.new(9, 719, 16)-- The function that takes place when the button is pressed
+   end,
+})
+
+local Button = Player:CreateButton({
+   Name = "Infinite Jump",
+   Callback = function()
+  game:GetService("RunService").RenderStepped:Connect(function()
+	if not game.Players.LocalPlayer.Character then return end
+	if not game.Players.LocalPlayer.Character.Humanoid then return end
+
+	if game.Players.LocalPlayer.Character.Humanoid.Jump then
+		game.Players.LocalPlayer.Character.Humanoid:ChangeState(Enum.HumanoidStateType.Jumping)
+	end
+end)
+   end,
+})
+
+local Slider = Player:CreateSlider({
+   Name = "Walkspeed",
+   Range = {16, 100},
+   Increment = 1,
+   Suffix = "Walkspeed",
+   CurrentValue = 16,
+   Flag = "Slider1", -- A flag is the identifier for the configuration file, make sure every element has a different flag if you're using configuration saving to ensure no overlaps
+   Callback = function(Value)
+   game.Players.LocalPlayer.Character.Humanoid.WalkSpeed = Value
+   end,
+})
+
+local Slider = Player:CreateSlider({
+   Name = "Jump power",
+   Range = {16, 100},
+   Increment = 1,
+   Suffix = "Jump power",
+   CurrentValue = 16,
+   Flag = "Slider1", -- A flag is the identifier for the configuration file, make sure every element has a different flag if you're using configuration saving to ensure no overlaps
+   Callback = function(Value)
+   game.Players.LocalPlayer.Character.Humanoid.JumpPower = Value
+   end,
+})
