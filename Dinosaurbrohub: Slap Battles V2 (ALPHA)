@@ -18,14 +18,41 @@ local Tab = Window:Tab({
 	Icon = "rbxassetid://11396131982", -- String
 	Color = Color3.new(1, 0, 0) -- Color3
 })
+local Tab4 = Window:Tab({
+	Name = "Misc", -- String
+	Icon = "rbxassetid://11396131982", -- String
+	Color = Color3.new(1, 0, 0) -- Color3
+})
 local Tab2 = Window:Tab({
 	Name = "Player", -- String
 	Icon = "rbxassetid://11396131982", -- String
 	Color = Color3.new(1, 0, 0) -- Color3
 })
+local Tab3 = Window:Tab({
+	Name = "Antis", -- String
+	Icon = "rbxassetid://11396131982", -- String
+	Color = Color3.new(1, 0, 0) -- Color3
+})
+local Tab5 = Window:Tab({
+	Name = "Farming", -- String
+	Icon = "rbxassetid://11396131982", -- String
+	Color = Color3.new(1, 0, 0) -- Color3
+})
 
 local Section = Tab:Section({
-	Name = "Functions" -- String
+	Name = "Main" -- String
+})
+local Section2 = Tab3:Section({
+	Name = "Main" -- String
+})
+local Section3 = Tab2:Section({
+	Name = "Main" -- String
+})
+local Section4 = Tab4:Section({
+	Name = "Main" -- String
+})
+local Section5 = Tab5:Section({
+	Name = "Main" -- String
 })
 
 local Button = Section:Button({
@@ -68,10 +95,130 @@ local Button = Section:Button({
     end
 })
 
-local Toggle = Section:Toggle({
+local Toggle = Section2:Toggle({
 	Name = "anti void", -- String
-	Default = true, -- Boolean
-	Callback = function(Bool)
-		
+	Default = false, -- Boolean
+	Callback = function(noVoid)
+		if noVoid == true then
+                for i,v in pairs(game.Workspace:GetDescendants()) do
+                    if v.Name == "dedBarrier"  or v.Name == "ArenaBarrier" or v.Name == "DEATHBARRIER" or v.Name == "DEATHBARRIER2" then               
+                        v.CanCollide = true
+                        v.Material = "SmoothPlastic"
+                        v.Color = Color3.new(1,1,1)
+                        v.Transparency = 1
+                    end  
+                end 
+            else
+                for i,v in pairs(game.Workspace:GetDescendants()) do
+                    if v.Name == "dedBarrier"  or v.Name == "ArenaBarrier" or v.Name == "DEATHBARRIER" or v.Name == "DEATHBARRIER2" then               
+                        v.CanCollide = false
+                        v.Transparency = 1
+                    end  
+                end
+            end end
+	
+})
+
+
+
+local Button = Section:Button({
+	Name = "Spawn Null", -- String
+	Callback = function()
+		 game:GetService("ReplicatedStorage").NullAbility:FireServer()
 	end
+})
+
+local Button = Section5:Button({
+	Name = "Get trap", -- String
+	Callback = function()
+		if game.Players.LocalPlayer.leaderstats.Glove.Value == "Brick" then
+for i = 1, 200 do
+game:GetService("ReplicatedStorage").lbrick:FireServer()
+game.Players.LocalPlayer.PlayerGui.BRICKCOUNT.ImageLabel.TextLabel.Text = game.Players.LocalPlayer.PlayerGui.BRICKCOUNT.ImageLabel.TextLabel.Text + 1;
+wait(Random.new():NextNumber(1.5,1.75))
+game:GetService("ReplicatedStorage").lbrick:FireServer()
+game.Players.LocalPlayer.PlayerGui.BRICKCOUNT.ImageLabel.TextLabel.Text = game.Players.LocalPlayer.PlayerGui.BRICKCOUNT.ImageLabel.TextLabel.Text + 1;
+wait(Random.new():NextNumber(1.5,1.75))
+game:GetService("ReplicatedStorage").lbrick:FireServer()
+game.Players.LocalPlayer.PlayerGui.BRICKCOUNT.ImageLabel.TextLabel.Text = game.Players.LocalPlayer.PlayerGui.BRICKCOUNT.ImageLabel.TextLabel.Text + 1;
+wait(Random.new():NextNumber(1.5,1.75))
+game:GetService("ReplicatedStorage").lbrick:FireServer()
+game.Players.LocalPlayer.PlayerGui.BRICKCOUNT.ImageLabel.TextLabel.Text = game.Players.LocalPlayer.PlayerGui.BRICKCOUNT.ImageLabel.TextLabel.Text + 1;
+wait(Random.new():NextNumber(1.5,1.75))
+game:GetService('VirtualInputManager'):SendKeyEvent(true,'E',false,x)
+wait(Random.new():NextNumber(1.5,1.75))
+        end
+else
+Library:Notify({
+	Name = " ", -- String
+	Text = "Equip the Brick glove to do this action.", -- String
+	Icon = "rbxassetid://11401835376", -- String
+	Sound = "rbxassetid://6647898215", -- String
+	Duration = 10, -- Integer
+    Callback = function()
+        warn('blud is not sneaky')
+    end
+})
+end
+
+	end
+})
+
+
+local Toggle = Section:Toggle({
+	Name = "Rhythm Spam", -- String
+	Default = false, -- Boolean
+	Callback = function(Value)
+		RhythmSpam = Value
+while RhythmSpam do
+game:GetService("ReplicatedStorage").rhythmevent:FireServer("AoeExplosion",0)
+wait()
+end
+	end
+})
+
+
+
+local Toggle = Section4:Toggle({
+	Name = "Free slaps (ARENA ONLY)", -- String
+	Default = false, -- Boolean
+	Callback = function(Value)
+		 SlappleFarm = Value
+while SlappleFarm do
+for i, v in ipairs(workspace.Arena.island5.Slapples:GetDescendants()) do
+                if game.Players.LocalPlayer.Character:FindFirstChild("HumanoidRootPart") and game.Players.LocalPlayer.Character:FindFirstChild("entered") and v.Name == "Glove" and v:FindFirstChildWhichIsA("TouchTransmitter") then
+                    firetouchinterest(game.Players.LocalPlayer.Character.HumanoidRootPart, v, 0)
+        firetouchinterest(game.Players.LocalPlayer.Character.HumanoidRootPart, v, 1)
+                end
+            end
+wait()
+end
+	end
+})
+
+local Toggle = Section2:Toggle({
+	Name = "Anti Reaper", -- String
+	Default = false, -- Boolean
+	Callback = function(Value)
+
+	end
+})
+local Slider = Section3:Slider({
+	Name = "Walkspeed", -- String
+	Max = 450, -- Integer
+	Min = 16, -- Integer
+	Default = 16, -- Integer
+	Callback = function(Value)
+    		game.Players.LocalPlayer.Character.Humanoid.WalkSpeed = Value
+  	end
+})
+
+local Slider = Section3:Slider({
+	Name = "Jump power", -- String
+	Max = 155, -- Integer
+	Min = 50, -- Integer
+	Default = 50, -- Integer
+	Callback = function(Value)
+    		game.Players.LocalPlayer.Character.Humanoid.JumpPower = Value
+  	end
 })
