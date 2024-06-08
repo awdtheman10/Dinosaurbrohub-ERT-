@@ -200,12 +200,21 @@ local Toggle = Section2:Toggle({
 	Name = "Anti Reaper", -- String
 	Default = false, -- Boolean
 	Callback = function(Value)
-
+AntiReaper = Value
+            while AntiReaper do
+for i,v in pairs(game.Players.LocalPlayer.Character:GetDescendants()) do
+                    if v.Name == "DeathMark" then
+                        game:GetService("ReplicatedStorage").ReaperGone:FireServer(v)
+                    game:GetService("Lighting"):WaitForChild("DeathMarkColorCorrection"):Destroy() 
+                    end
+                end
+task.wait()
+end
 	end
 })
 local Slider = Section3:Slider({
 	Name = "Walkspeed", -- String
-	Max = 450, -- Integer
+	Max = 85, -- Integer
 	Min = 16, -- Integer
 	Default = 16, -- Integer
 	Callback = function(Value)
@@ -221,4 +230,25 @@ local Slider = Section3:Slider({
 	Callback = function(Value)
     		game.Players.LocalPlayer.Character.Humanoid.JumpPower = Value
   	end
+})
+
+local Button = Section:Button({
+	Name = "Inf Invis (666+ slaps)", -- String
+	Callback = function()
+		if game.Players.LocalPlayer.Character:FindFirstChild("entered") == nil and game.Players.LocalPlayer.leaderstats.Slaps.Value >= 666 then
+OGlove = game.Players.LocalPlayer.leaderstats.Glove.Value
+fireclickdetector(workspace.Lobby.Ghost.ClickDetector)
+game.ReplicatedStorage.Ghostinvisibilityactivated:FireServer()
+fireclickdetector(workspace.Lobby[OGlove].ClickDetector)
+else
+Library:Notify({
+	Name = "ERROR", -- String
+	Text = "You need 666+ slaps and to be in the lobby.", -- String
+	Icon = "rbxassetid://11401835376", -- String
+	Sound = "rbxassetid://3900067524", -- String
+
+	Duration = 10,
+})
+end
+	end
 })
