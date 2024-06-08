@@ -35,7 +35,9 @@ local Button = Tab:CreateButton({
    Name = "Green (Best bombing area)",
    Callback = function()
    if player1.Team ~= game.Teams.GREEN then
-   game.Players.LocalPlayer.Character.Torso.CFrame = CFrame.new(0, 25, -125)-- The function that takes place when the button is pressed
+       
+   game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(0, 25, -125)-- The function that takes place when the button is pressed
+      
    else
     Rayfield:Notify({
    Title = "Error",
@@ -58,7 +60,10 @@ local Button = Tab:CreateButton({
    Name = "Blue (Best bombing area)",
    Callback = function()
    if player1.Team ~= game.Teams.BLUE then
-   game.Players.LocalPlayer.Character.Torso.CFrame = CFrame.new(2, 27, 117)-- The function that takes place when the button is pressed
+       
+   game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(2, 27, 117)-- The function that takes place when the button is pressed
+      
+  
   else
  Rayfield:Notify({
    Title = "Error",
@@ -81,7 +86,12 @@ local Button = Tab:CreateButton({
    Name = "Yellow (Best bombing area)",
    Callback = function()
    if player1.Team ~= game.Teams.YELLOW then
-   game.Players.LocalPlayer.Character.Torso.CFrame = CFrame.new(127, 27, 2)-- The function that takes place when the button is pressed
+     
+   game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(127, 27, 2)-- The function that takes place when the button is pressed
+       
+       
+       
+  
    else
     Rayfield:Notify({
    Title = "Error",
@@ -105,7 +115,11 @@ local Button = Tab:CreateButton({
    Name = "Red (Best bombing area)",
    Callback = function()
    if player1.Team ~= game.Teams.RED then
-   game.Players.LocalPlayer.Character.Torso.CFrame = CFrame.new(-131, 24, -8)-- The function that takes place when the button is pressed
+     
+   game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-131, 24, -8)-- The function that takes place when the button is pressed
+       
+            
+       
     else
     Rayfield:Notify({
    Title = "Error",
@@ -129,23 +143,26 @@ local Label = Tab:CreateLabel("Other")
 local Button = Tab:CreateButton({
    Name = "Safe zone",
    Callback = function()
-    if workspace.Safezone then
-        workspace.Safezone:Destroy()
-    end
+    
   local safezone =  Instance.new("Part", workspace)
   safezone.Name = "Safezone"
   safezone.CFrame = CFrame.new(10000, 995, 10000)
   safezone.Size = Vector3.new(750, 2, 750)
   safezone.Transparency = 0.15
   safezone.Anchored = true
-   game.Players.LocalPlayer.Character.Torso.CFrame = CFrame.new(10000, 1000, 10000)-- The function that takes place when the button is pressed
+
+   game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(10000, 1000, 10000)-- The function that takes place when the button is pressed
+
    end,
 }) 
 local Button = Tab:CreateButton({
    Name = "Dead Lobby",
    Callback = function()
-  
-   game.Players.LocalPlayer.Character.Torso.CFrame = CFrame.new(9, 719, 16)-- The function that takes place when the button is pressed
+    
+   
+   game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(9, 719, 16)-- The function that takes place when the button is pressed
+   
+    
    end,
 })
 
