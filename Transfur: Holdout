@@ -1,0 +1,142 @@
+local Library = loadstring(game:HttpGet('https://raw.githubusercontent.com/Loco-CTO/UI-Library/main/VisionLibV2/source.lua'))()
+
+
+local Window = Library:Create({
+	Name = "Dinosaurbrohub V2 - Transfur: Holdout", -- String
+	Footer = "By awdtheman10", -- String
+	ToggleKey = Enum.KeyCode.RightShift, -- Enum.KeyCode
+	LoadedCallback = function()
+		-- Function
+	end,
+
+	KeySystem = true, -- Boolean
+	Key = "Dinosaurbrohubtothemoon", -- String
+	MaxAttempts = 5, -- Integer
+	DiscordLink = nil, -- String (Set it to nil if you do not have one, the button will not pop out)
+	ToggledRelativeYOffset = 5 -- Number (Y Offset from bottom of your screen. Set it to nil if you want it to be centred)
+})
+
+local Tab = Window:Tab({
+	Name = "Items", -- String
+	Icon = "rbxassetid://11396131982", -- String
+	Color = Color3.new(1, 0, 0) -- Color3
+})
+
+local Section = Tab:Section({
+	Name = "Main" -- String
+})
+
+		
+
+
+
+local Button = Section:Button({
+	Name = "Load/reload teleports (items)", -- String
+	Callback = function()
+		local function highlightPart(part)
+			
+			local highlight = Instance.new("Highlight")
+			highlight.Adornee = part
+			highlight.Parent = part
+		end
+
+		local function teleportPlayerTo(part)
+			local player = game.Players.LocalPlayer
+			local character = player.Character or player.CharacterAdded:Wait()
+			if character then
+				character:SetPrimaryPartCFrame(part.CFrame)
+			end
+
+			local VIM = game:GetService("VirtualInputManager")
+			local function KeyPress(key)
+				VIM:SendKeyEvent(true, key, false, game)
+				task.wait()
+				VIM:SendKeyEvent(false, key, false, game)
+			end
+
+			KeyPress(Enum.KeyCode.E)
+		end
+
+		local tools = game:GetService("Workspace"):GetDescendants()
+		for _, tool in ipairs(tools) do
+			if tool:IsA("Tool") then
+				local hasProximityPrompt = false
+				for _, part in ipairs(tool:GetDescendants()) do
+					if part:IsA("BasePart") then
+						if part:FindFirstChildOfClass("ProximityPrompt") then
+							hasProximityPrompt = true
+							local Button = Section:Button({
+								Name = "Teleport to " .. part.Parent.Name, -- String
+								Callback = function()
+									teleportPlayerTo(part)
+								end
+							})
+						else
+							highlightPart(part)
+						end
+					end
+				end
+			end
+		end
+	end
+})
+
+
+
+local Slider = Section:Slider({
+	Name = "Speed", -- String
+	Max = 45, -- Integer
+	Min = 16, -- Integer
+	Default = 16, -- Integer
+	Callback = function(Value)
+    		-- Function
+  	end
+})
+
+
+
+
+
+local Dropdown = Section:Dropdown({
+	Name = "Teleport", -- String
+	Items = {"Spawn"}, -- Table
+	Callback = function(item)
+		if item == "Spawn" then
+            game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(1848, 18, 295)
+        end
+	end
+})
+
+
+
+
+
+
+
+
+
+
+
+local Keybind = Section:Keybind({
+	Name = "Close window",
+	Default = Enum.KeyCode.Return,
+	Callback = function()
+		print('Changing keybind...')
+	end,
+	UpdateKeyCallback = function(Key)
+		Window:ChangeTogglekey(Enum.KeyCode.Key) -- Enum.KeyCode
+	end
+})
+
+
+Library:Notify({
+	Name = "Warning", -- String
+	Text = "This is an early version of this script. Beware of potential bugs in the script...", -- String
+	Icon = "rbxassetid://11401835376", -- String
+	Sound = "rbxassetid://6647898215", -- String
+	Duration = 5, -- Integer
+})
+
+local Label = Section:Label({
+	Name = "Early-Beta V1.0.0", -- String
+})
