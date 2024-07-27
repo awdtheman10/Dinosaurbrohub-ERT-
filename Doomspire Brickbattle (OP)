@@ -139,17 +139,9 @@ local function preventFirstPerson()
     end
 end
 
-local function aimMouseAtClosestPlayer()
-    local closestPlayer = getClosestPlayer()
-    if closestPlayer and closestPlayer.Character and closestPlayer.Character:FindFirstChild("HumanoidRootPart") then
-        local targetPosition = closestPlayer.Character.HumanoidRootPart.Position
-        local camera = workspace.CurrentCamera
-        local screenPoint = camera:WorldToScreenPoint(targetPosition)
-        mousemoveabs(screenPoint.X, screenPoint.Y)
-    end
-end
 
-local Dropdown = Tab:CreateDropdown({
+
+local Dropdown = Combat:CreateDropdown({
     Name = "Select Part to Rotate",
     Options = {"HumanoidRootPart", "Torso"},
     CurrentOption = {"HumanoidRootPart"},
@@ -160,8 +152,8 @@ local Dropdown = Tab:CreateDropdown({
     end,
 })
 
-local Toggle = Tab:CreateToggle({
-    Name = "Turn to Closest Player",
+local Toggle = Combat:CreateToggle({
+    Name = "Look at closest (useful for sword pvp)",
     CurrentValue = false,
     Flag = "ToggleTurn",
     Callback = function(Value)
@@ -171,7 +163,7 @@ local Toggle = Tab:CreateToggle({
                 if LocalPlayer.Character then
                     turnToClosestPlayer(selectedPart)
                     preventFirstPerson()
-                    aimMouseAtClosestPlayer()
+                    
                 end
             end)
         else
@@ -183,13 +175,7 @@ local Toggle = Tab:CreateToggle({
     end,
 })
 
--- Initial setup
-if LocalPlayer.Character then
-    turnToClosestPlayer(selectedPart)
-end
-LocalPlayer.CharacterAdded:Connect(function(character)
-    turnToClosestPlayer(selectedPart)
-end)
+
 
 
 
@@ -406,6 +392,5 @@ local Slider = Player:CreateSlider({
    game.Players.LocalPlayer.Character.Humanoid.JumpPower = Value
    end,
 })
-
 
 
