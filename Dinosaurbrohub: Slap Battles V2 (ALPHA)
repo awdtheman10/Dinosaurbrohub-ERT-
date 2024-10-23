@@ -54,41 +54,65 @@ local Section4 = Tab4:Section({
 local Section5 = Tab5:Section({
 	Name = "Main" -- String
 })
-local autoCornsEnabled = false  -- Initialize the auto corns toggle state
+local autoCornsEnabled = false  
 
+function moveToNextCorn()
+    local candyCornsFolder = game.Workspace:FindFirstChild("CandyCorns")
+    if candyCornsFolder then
+        for _, candy in pairs(candyCornsFolder:GetDescendants()) do
+            if candy:IsA("Model") or candy:IsA("BasePart") then
+              
+                candy.Touched:Connect(function(hit)
+                    local player = game.Players.LocalPlayer
+                    local character = player.Character
+                    if character and hit:IsDescendantOf(character) then
+                        
+                        moveToNextCorn()
+                    end
+                end)
 
-local function toggleAutoCorns()
-    autoCornsEnabled = not autoCornsEnabled
-    
-    if autoCornsEnabled == true then
-        while autoCornsEnabled do
-            wait()  -- Adjust the wait time as needed
-            local candyCornsFolder = game.Workspace.CandyCorns
-            if candyCornsFolder then
-                for _, candy in pairs(candyCornsFolder:GetDescendants()) do
-                    if candy:IsA("Model") or candy:IsA("BasePart") then
-                        local player = game.Players.LocalPlayer
-                        local character = player.Character
-                        if character then
-                            local rootPart = character:FindFirstChild("HumanoidRootPart")
-                            if rootPart then
-                                rootPart.CFrame = candy.CFrame
-                            end
-                        end
+                
+                local player = game.Players.LocalPlayer
+                local character = player.Character
+                if character then
+                    local rootPart = character:FindFirstChild("HumanoidRootPart")
+                    if rootPart then
+                        rootPart.CFrame = candy.CFrame
                     end
                 end
+                
+                return 
             end
         end
     end
 end
 
+function toggleAutoCorns(state)
+    autoCornsEnabled = state  
+    if autoCornsEnabled then
+        -- Start auto corn farming
+        spawn(function()  
+            while autoCornsEnabled do
+                moveToNextCorn()  
+                wait(0.1)  
+                if not autoCornsEnabled then  
+                    break
+                end
+            end
+        end)
+    end
+end
 
-local Toggle = Section2:Toggle({
-	Name = "Auto Corns (HALLOWEEN)", -- String
-	Default = false, -- Boolean
-	Callback = function()
-		toggleAutoCorns()
+
+local Toggle = Section:Toggle({
+    Name = "Auto Corns (HALLOWEEN)", -- String
+    Default = false, -- Boolean
+    Callback = function(state)
+        toggleAutoCorns(state) 
+    end
 })
+
+
 
 local Button = Section:Button({
 	Name = "Safe zone", -- String
@@ -99,14 +123,14 @@ local Button = Section:Button({
   safezone.Size = Vector3.new(750, 2, 750)
   safezone.Transparency = 0.15
   safezone.Anchored = true
-   game.Players.LocalPlayer.Character.Torso.CFrame = CFrame.new(10000, 1000, 10000)-- The function that takes place when the button is pressed
+   game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(10000, 1000, 10000)-- The function that takes place when the button is pressed
 	end
 })
 local Dropdown = Section:Dropdown({
     Name = "Players", -- String
     Items = {'', ' '}, -- Table
     Callback = function(item)
-        game.Players.LocalPlayer.Character.Torso.CFrame = game.Players[item].Character.Torso.CFrame
+        game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = game.Players[item].Character.HumanoidRootPart.CFrame
     end
 })
 
@@ -117,12 +141,12 @@ local Button = Section:Button({
         for _, player in pairs(game.Players:GetPlayers()) do 
             table.insert(players1, player.Name)
         end
-        -- Add additional items if needed
+        
         table.insert(players1, nil)
         table.insert(players1, nil)
         table.insert(players1, nil)
         table.insert(players1, nil)
-        -- Update the dropdown menu
+        
         Dropdown:UpdateList({
             Items = players1,
             Replace = true
