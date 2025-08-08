@@ -1,5 +1,6 @@
 -- uh this is like v1
 -- works on solara
+-- its fe by the way (other people see the anims)
 if _G.loaded and typeof(_G.loaded) == "function" then
     _G.loaded()
 end
