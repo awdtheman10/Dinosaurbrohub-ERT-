@@ -4,9 +4,6 @@ also added the ability to jump
 and fixed some stuff
 ]]
 
-
-
-
 if _G.loaded and typeof(_G.loaded) == "function" then
     _G.loaded()
 end
@@ -210,5 +207,6 @@ _G.loaded = function()
 		conn:Disconnect()
 	end
 	cleanupFunctions = {}
+    rSConnecton:Disconnect()
 	rSConnecton = nil
 end
