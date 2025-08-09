@@ -1,13 +1,10 @@
 --[[
-v2 added jason anims and a gui switcher
-also added the ability to jump
-and fixed some stuff
+added c00lkidd anims + fixed some issues
 ]]
-
 if _G.loaded and typeof(_G.loaded) == "function" then
     _G.loaded()
 end
-
+local cleanupFunctions= {}
 local Players = game:GetService("Players")
 local UserInputService = game:GetService("UserInputService")
 local RunService = game:GetService("RunService")
@@ -175,8 +172,17 @@ local function switchAnimSet(newAnimSet)
 end
 
 createButton("Enable jumping", function()
-	player.Character:FindFirstChild("Humanoid").JumpPower = 30
+	player.Character:FindFirstChild("Humanoid").JumpPower = 50
 end)
+
+createButton("C00lkidd anims", function()
+	switchAnimSet({
+		idle = "rbxassetid://116050994905421",
+		walk = "rbxassetid://18885906143",
+		run = "rbxassetid://96571077893813"
+	})
+end)
+
 
 createButton("John Doe Anims", function()
 	switchAnimSet({
