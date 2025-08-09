@@ -1,5 +1,11 @@
--- still fe
--- v2
+--[[
+v2 added jason anims and a gui switcher
+also added the ability to jump
+and fixed some stuff
+]]
+
+
+
 
 if _G.loaded and typeof(_G.loaded) == "function" then
     _G.loaded()
@@ -8,7 +14,7 @@ end
 local Players = game:GetService("Players")
 local UserInputService = game:GetService("UserInputService")
 local RunService = game:GetService("RunService")
-
+local rSConnecton
 local player = Players.LocalPlayer
 assert(player, "LocalPlayer not found")
 
@@ -58,7 +64,7 @@ local function setupCharacter(character)
 
 	playAnim("idle")
 
-	RunService.RenderStepped:Connect(function()
+	rSConnecton = RunService.RenderStepped:Connect(function()
 		if not humanoid or not humanoid.Parent then return end
 		local rootPart = humanoid.RootPart or character:FindFirstChild("HumanoidRootPart")
 		if not rootPart then return end
@@ -88,7 +94,7 @@ local playerGui = player:WaitForChild("PlayerGui")
 local screenGui = Instance.new("ScreenGui")
 screenGui.Name = "AnimSwitcherGui"
 screenGui.Parent = playerGui
-
+screenGui.ResetOnSpawn = false
 local scrollFrame = Instance.new("ScrollingFrame")
 scrollFrame.Size = UDim2.new(0, 200, 0, 150)
 scrollFrame.Position = UDim2.new(0, 50, 0, 50)
@@ -204,4 +210,5 @@ _G.loaded = function()
 		conn:Disconnect()
 	end
 	cleanupFunctions = {}
+	rSConnecton = nil
 end
